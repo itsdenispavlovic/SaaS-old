@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BillingController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +17,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('billing', [BillingController::class, 'index'])->name('billing');
+    Route::get('checkout/{plan_id}', [CheckoutController::class, 'checkout'])->name('checkout');
 });
 
 /**

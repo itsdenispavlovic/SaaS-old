@@ -4,6 +4,7 @@ namespace App\Jobs\StripeWebhooks;
 
 use App\Models\Payment;
 use App\Models\User;
+use App\Notifications\ChargeSuccessNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -34,12 +35,14 @@ class ChargeSucceededJob implements ShouldQueue
 
         if($user)
         {
-            Payment::create([
+            $payment = Payment::create([
                 'user_id' => $user->id,
                 'stripe_id' => $charge['id'],
                 'subtotal' => $charge['amount'],
                 'total' => $charge['amount']
             ]);
+
+            $user->notify(new ChargeSuccessNotification($payment));
         }
         else
         {

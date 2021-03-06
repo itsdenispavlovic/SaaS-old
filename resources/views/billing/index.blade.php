@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-header">
-                Billing
+                My Plan
             </div>
             <div class="card-body">
                 @if(Session::has('message'))
@@ -42,5 +42,43 @@
                 </div>
             </div>
         </div>
+
+        @if(!is_null($currentPlan))
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    Payment methods
+                </div>
+                <div class="card-body">
+                     <table class="table">
+                         <thead>
+                             <tr>
+                                 <th>Brand</th>
+                                 <th>Expires at</th>
+                                 <th></th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             @foreach($paymentMethods as $paymentMethod)
+                                 <tr>
+                                     <td>{{ $paymentMethod->card->brand }}</td>
+                                     <td>{{ $paymentMethod->card->exp_month }} / {{ $paymentMethod->card->exp_year }}</td>
+                                     <td>
+                                         @if($defaultPaymentMethod->id == $paymentMethod->id)
+                                             default
+
+                                         @else
+                                             <a href="{{ route('payment-methods.markDefault', $paymentMethod->id) }}">Mark as Default</a>
+                                         @endif
+                                     </td>
+                                 </tr>
+                             @endforeach
+                         </tbody>
+                     </table>
+                    <br>
+                    <a href="{{ route('payment-methods.create') }}" class="btn btn-primary">Add Payment Method</a>
+                </div>
+            </div>
+        @endif
     </div>
 @stop

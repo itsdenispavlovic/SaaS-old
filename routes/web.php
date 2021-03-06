@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
     Route::get('cancel', [BillingController::class, 'cancelPlan'])->name('cancel.plan');
     Route::get('resume', [BillingController::class, 'resumePlan'])->name('resume.plan');
+
+    Route::get('payment-methods/default/{paymentMethod}', [PaymentMethodController::class, 'markDefault'])->name('payment-methods.markDefault');
+    Route::resource('payment-methods', PaymentMethodController::class);
 });
 
 /**

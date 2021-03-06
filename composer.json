@@ -22,6 +22,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "laravelcollective/html": "^6.2",
+        "laraveldaily/laravel-invoices": "^2.0",
         "spatie/laravel-stripe-webhooks": "^2.5"
     },
     "require-dev": {

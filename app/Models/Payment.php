@@ -16,4 +16,9 @@ class Payment extends Model
         'tax',
         'total'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

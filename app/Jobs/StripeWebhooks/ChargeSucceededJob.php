@@ -5,6 +5,7 @@ namespace App\Jobs\StripeWebhooks;
 use App\Models\Payment;
 use App\Models\User;
 use App\Notifications\ChargeSuccessNotification;
+use App\Services\InvoicesService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -41,6 +42,9 @@ class ChargeSucceededJob implements ShouldQueue
                 'subtotal' => $charge['amount'],
                 'total' => $charge['amount']
             ]);
+
+            // Generate invoice
+            (new InvoicesService())->generateInvoice($payment);
 
             $user->notify(new ChargeSuccessNotification($payment));
         }

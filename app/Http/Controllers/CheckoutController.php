@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Country;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ class CheckoutController extends Controller
     public function checkout($plan_id)
     {
         $plan = Plan::findOrFail($plan_id);
+        $countries = Country::all();
 
         $currentPlan = Auth::user()->subscription('default')->stripe_plan ?? NULL;
 
@@ -24,7 +26,7 @@ class CheckoutController extends Controller
 
         $intent = auth()->user()->createSetupIntent();
 
-        return view('billing.checkout', compact('plan', 'intent'));
+        return view('billing.checkout', compact('plan', 'intent', 'countries'));
     }
 
     public function processCheckout(Request $request)
@@ -38,7 +40,13 @@ class CheckoutController extends Controller
                 ->trialDays(10)
                 ->create($request->get('payment-method'));
             auth()->user()->update([
-                'trial_ends_at' => NULL
+                'trial_ends_at' => NULL,
+                'company_name' => $request->get('company_name'),
+                'address_line_1' => $request->get('address_line_1'),
+                'address_line_2' => $request->get('address_line_2'),
+                'country_id' => $request->get('country_id'),
+                'city' => $request->get('city'),
+                'postcode' => $request->get('postcode')
             ]);
             return redirect()->route('billing')->with('message', 'Subscribed successfully!');
         } catch (\Exception $e)

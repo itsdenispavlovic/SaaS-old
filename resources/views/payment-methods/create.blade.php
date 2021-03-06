@@ -19,7 +19,7 @@
                             @csrf
                             <input type="hidden" name="payment-method" id="payment-method" value="" />
 
-                            <input id="card-holder-name" type="text" placeholder="Card holder name">
+                            <input id="card-holder-name" class="form-control" type="text" placeholder="Card holder name">
 
                             <!-- Stripe Elements Placeholder -->
                             <div id="card-element"></div>

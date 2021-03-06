@@ -61,7 +61,13 @@ class User extends Authenticatable
         'two_factor_recovery_codes',
         'type',
         'remember_token',
-        'trial_ends_at'
+        'trial_ends_at',
+        'company_name',
+        'address_line_1',
+        'address_line_2',
+        'country_id',
+        'city',
+        'postcode',
     ];
 
     /**

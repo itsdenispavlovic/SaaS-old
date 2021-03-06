@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
 use Laravel\Cashier\Billable;
 
 /**
@@ -25,7 +26,7 @@ use Laravel\Cashier\Billable;
  */
 class User extends Authenticatable
 {
-    use SoftDeletes, Billable;
+    use Notifiable, SoftDeletes, Billable;
 
     use HasFactory;
 

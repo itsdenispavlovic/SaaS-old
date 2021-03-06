@@ -31,22 +31,31 @@
             </li>
             @if (Route::has('login'))
                 @auth
-                    <li class="nav-item dropdown ml-auto">
+                    <li class="ml-auto">
 
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ auth()->user()->username }} </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            @if(auth()->user()->type == "admin")
-                                <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a>
-                            @endif
-                            <a href="{{ route('billing') }}" class="dropdown-item">Billing</a>
-                            <a href="{{ url('/logout') }}" class="dropdown-item"
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                <i class="fa fa-lock"></i>Logout
-                            </a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </div>
+                        @can('tasks')
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">My Tasks</a>
+                        </li>
+                        @endcan
+
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> {{ auth()->user()->username }} </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                                @if(auth()->user()->type == "admin")
+                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a>
+                                @endif
+                                <a href="{{ route('billing') }}" class="dropdown-item">Billing</a>
+                                <a href="{{ url('/logout') }}" class="dropdown-item"
+                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="fa fa-lock"></i>Logout
+                                </a>
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
                     </li>
                 @else
                     <li class="nav-item">

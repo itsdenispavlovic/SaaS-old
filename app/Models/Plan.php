@@ -14,4 +14,9 @@ class Plan extends Model
         'price',
         'stripe_plan_id'
     ];
+
+    public function features()
+    {
+        return $this->belongsToMany(Feature::class);
+    }
 }

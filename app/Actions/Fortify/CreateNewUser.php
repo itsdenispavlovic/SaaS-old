@@ -45,6 +45,7 @@ class CreateNewUser implements CreatesNewUsers
             'username' => $input['username'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'trial_ends_at' => now()->addDays(10)->toDateTimeString()
         ]);
     }
 }

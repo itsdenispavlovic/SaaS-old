@@ -37,7 +37,9 @@ class CheckoutController extends Controller
             )
                 ->trialDays(10)
                 ->create($request->get('payment-method'));
-
+            auth()->user()->update([
+                'trial_ends_at' => NULL
+            ]);
             return redirect()->route('billing')->with('message', 'Subscribed successfully!');
         } catch (\Exception $e)
         {

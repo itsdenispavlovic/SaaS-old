@@ -35,7 +35,7 @@ class User extends Authenticatable
     const UPDATED_AT = 'updated_at';
 
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'trial_ends_at'];
 
     const USER_TYPES = [
         'user' => 'User',
@@ -60,7 +60,8 @@ class User extends Authenticatable
         'two_factor_secret',
         'two_factor_recovery_codes',
         'type',
-        'remember_token'
+        'remember_token',
+        'trial_ends_at'
     ];
 
     /**

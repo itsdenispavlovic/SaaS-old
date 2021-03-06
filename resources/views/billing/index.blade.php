@@ -14,7 +14,7 @@
                 @endif
 
                 @if(is_null($currentPlan))
-                    You are now on Free Plan. Please choose plan to upgrade:
+                    You are now on Free Trial. Please choose plan to upgrade:
                 @elseif($currentPlan->trial_ends_at)
                     <div class="alert alert-info">
                         Your trial will end on {{ $currentPlan->trial_ends_at->toDateString() }} and your card will be charged.

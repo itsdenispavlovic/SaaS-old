@@ -84,5 +84,36 @@
                 </div>
             </div>
         @endif
+
+        <br>
+        <div class="card">
+            <div class="card-header">
+                Payment history
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Payment Date</th>
+                        <th>Amount</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($payments as $payment)
+                            <tr>
+                                <td>{{ $payment->created_at }}</td>
+                                <td>{{ number_format($payment->total / 100, 2) }}</td>
+                                <td>
+                                    <a href="{{ route('invoices.download', $payment->id) }}" class="btn btn-sm btn-primary">Download invoice</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <br>
     </div>
 @stop

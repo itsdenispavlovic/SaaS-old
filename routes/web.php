@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('payment-methods/default/{paymentMethod}', [PaymentMethodController::class, 'markDefault'])->name('payment-methods.markDefault');
     Route::resource('payment-methods', PaymentMethodController::class);
+    Route::get('invoices/download/{paymentId}', [BillingController::class, 'downloadInvoice'])->name('invoices.download');
 });
 
 /**

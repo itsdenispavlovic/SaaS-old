@@ -33,8 +33,10 @@ class CheckoutController extends Controller
 
         try {
             auth()->user()->newSubscription(
-                $plan->name, $plan->stripe_plan_id
-            )->create($request->get('payment-method'));
+                'default', $plan->stripe_plan_id
+            )
+                ->trialDays(10)
+                ->create($request->get('payment-method'));
 
             return redirect()->route('billing')->with('message', 'Subscribed successfully!');
         } catch (\Exception $e)

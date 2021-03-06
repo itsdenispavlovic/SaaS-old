@@ -39,7 +39,13 @@
                                 <a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a>
                             @endif
                             <a href="{{ route('billing') }}" class="dropdown-item">Billing</a>
-                            <a href="{{ url('/home') }}" class="dropdown-item">Home</a>
+                            <a href="{{ url('/logout') }}" class="dropdown-item"
+                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="fa fa-lock"></i>Logout
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
                         </div>
                     </li>
                 @else

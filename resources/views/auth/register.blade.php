@@ -34,11 +34,39 @@
                                 <i class="icon-user"></i>
                               </span>
                             </div>
-                            <input type="text" class="form-control {{ $errors->has('name')?'is-invalid':'' }}" name="name" value="{{ old('name') }}"
-                                   placeholder="Full Name">
-                            @if ($errors->has('name'))
+                            <input type="text" class="form-control {{ $errors->has('first_name')?'is-invalid':'' }}" name="first_name" value="{{ old('first_name') }}"
+                                   placeholder="First Name">
+                            @if ($errors->has('first_name'))
                                 <span class="invalid-feedback">
-                                    <strong>{{ $errors->first('name') }}</strong>
+                                    <strong>{{ $errors->first('first_name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="icon-user"></i>
+                              </span>
+                            </div>
+                            <input type="text" class="form-control {{ $errors->has('last_name')?'is-invalid':'' }}" name="last_name" value="{{ old('last_name') }}"
+                                   placeholder="Last Name">
+                            @if ($errors->has('last_name'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('last_name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">
+                                <i class="icon-user"></i>
+                              </span>
+                            </div>
+                            <input type="text" class="form-control {{ $errors->has('username')?'is-invalid':'' }}" name="username" value="{{ old('username') }}"
+                                   placeholder="Username">
+                            @if ($errors->has('username'))
+                                <span class="invalid-feedback">
+                                    <strong>{{ $errors->first('username') }}</strong>
                                 </span>
                             @endif
                         </div>

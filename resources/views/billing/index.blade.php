@@ -26,7 +26,7 @@
                     @foreach($plans as $plan)
                         <div class="col-md-4 text-center">
                             <h3>{{ $plan->name }}</h3>
-                            <b>${{ number_format($plan->price / 100, 2) }} / month</b>
+                            <b>${{ $plan->price }} / month</b>
                             <hr>
                             @if(!is_null($currentPlan) && $plan->stripe_plan_id == $currentPlan->stripe_plan)
                                 Your current plan.
@@ -103,7 +103,7 @@
                         @foreach($payments as $payment)
                             <tr>
                                 <td>{{ $payment->created_at }}</td>
-                                <td>{{ number_format($payment->total / 100, 2) }}</td>
+                                <td>{{ $payment->total }}</td>
                                 <td>
                                     <a href="{{ route('invoices.download', $payment->id) }}" class="btn btn-sm btn-primary">Download invoice</a>
                                 </td>

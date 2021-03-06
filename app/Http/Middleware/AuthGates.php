@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use App\Models\Feature;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthGates
@@ -19,7 +20,7 @@ class AuthGates
     public function handle(Request $request, Closure $next)
     {
         if (auth()->check()) {
-            $parent_user_id = auth()->user()->user_id ?? auth()->id();
+            $parent_user_id = Auth::user()->user_id ?? Auth::id();
             $userFeatures = Feature::select('features.name')
                 ->join('feature_plan', 'feature_plan.feature_id', '=', 'features.id')
                 ->join('plans', 'feature_plan.plan_id', '=', 'plans.id')

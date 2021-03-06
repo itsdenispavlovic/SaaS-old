@@ -44,7 +44,7 @@ class ChargeSuccessNotification extends Notification
     public function toMail($notifiable)
     {
         $message = (new MailMessage)
-            ->line('You have been charged $' . number_format($this->payment->total / 100, 2))
+            ->line('You have been charged $' . $this->payment->total)
             ->line('Thank you for using our application!');
 
         $fileName = storage_path('app/invoices/' . $this->payment->id . '.pdf');

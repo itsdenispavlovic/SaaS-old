@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Payment;
 use App\Models\Plan;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class BillingController extends Controller
 {
+    /**
+     * @return Application|Factory|View
+     */
     public function index()
     {
         $plans = Plan::all();
@@ -24,21 +32,32 @@ class BillingController extends Controller
         return view('billing.index', compact('plans', 'currentPlan', 'paymentMethods', 'defaultPaymentMethod', 'payments'));
     }
 
-    public function cancelPlan()
+    /**
+     * @return RedirectResponse
+     */
+    public function cancelPlan(): RedirectResponse
     {
         Auth::user()->subscription('default')->cancel();
 
         return redirect()->route('billing');
     }
 
-    public function resumePlan()
+    /**
+     * @return RedirectResponse
+     */
+    public function resumePlan(): RedirectResponse
     {
         Auth::user()->subscription('default')->resume();
 
         return redirect()->route('billing');
     }
 
-    public function downloadInvoice($paymentId)
+    /**
+     * @param $paymentId
+     *
+     * @return BinaryFileResponse
+     */
+    public function downloadInvoice($paymentId): BinaryFileResponse
     {
         $payment = Payment::where('user_id', Auth::id())->where('id', $paymentId)->firstOrFail();
 

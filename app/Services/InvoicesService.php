@@ -18,7 +18,7 @@ class InvoicesService
             ],
         ]);
 
-        $item = (new InvoiceItem())->title('Subscription fee')->pricePerUnit(number_format($payment->total / 100, 2));
+        $item = (new InvoiceItem())->title('Subscription fee')->pricePerUnit($payment->total);
 
         $invoice = Invoice::make()
             ->buyer($customer)

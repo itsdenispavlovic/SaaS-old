@@ -6,10 +6,15 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
-use Response;
 
 class UserController extends AppBaseController
 {
@@ -26,7 +31,7 @@ class UserController extends AppBaseController
      *
      * @param Request $request
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index(Request $request)
     {
@@ -39,7 +44,7 @@ class UserController extends AppBaseController
     /**
      * Show the form for creating a new User.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -51,13 +56,13 @@ class UserController extends AppBaseController
      *
      * @param CreateUserRequest $request
      *
-     * @return Response
+     * @return Application|RedirectResponse|Redirector
      */
     public function store(CreateUserRequest $request)
     {
         $input = $request->all();
 
-        $user = $this->userRepository->create($input);
+        $this->userRepository->create($input);
 
         Flash::success('User saved successfully.');
 
@@ -69,9 +74,9 @@ class UserController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return Application|Factory|View|RedirectResponse|Redirector
      */
-    public function show($id)
+    public function show(int $id)
     {
         $user = $this->userRepository->find($id);
 
@@ -89,9 +94,9 @@ class UserController extends AppBaseController
      *
      * @param int $id
      *
-     * @return Response
+     * @return Application|Factory|View|RedirectResponse|Redirector
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         $user = $this->userRepository->find($id);
 
@@ -110,7 +115,7 @@ class UserController extends AppBaseController
      * @param int $id
      * @param UpdateUserRequest $request
      *
-     * @return Response
+     * @return Application|RedirectResponse|Redirector
      */
     public function update(int $id, UpdateUserRequest $request)
     {
@@ -130,8 +135,7 @@ class UserController extends AppBaseController
             $inputs['password'] = bcrypt($request->get('password'));
         }
 
-        $user = $this->userRepository->update($inputs, $id);
-
+        $this->userRepository->update($inputs, $id);
 
         Flash::success('User updated successfully.');
 
@@ -143,11 +147,11 @@ class UserController extends AppBaseController
      *
      * @param int $id
      *
-     * @throws \Exception
+     * @return Application|RedirectResponse|Redirector
      *
-     * @return Response
+     * @throws Exception
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $user = $this->userRepository->find($id);
 

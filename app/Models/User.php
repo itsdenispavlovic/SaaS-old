@@ -41,6 +41,14 @@ class User extends Authenticatable
         'admin' => 'Admin'
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     */
+    protected $hidden = [
+        'password',
+        'remember_token'
+    ];
+
     public $fillable = [
         'first_name',
         'last_name',

@@ -17,5 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Admin
+ */
+Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'admin']], function () {
+    Route::get('/', 'HomeController@index')->name('dashboard');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    /**
+     * Users
+     */
+    Route::resource('users', 'UserController');
+});

@@ -42,3 +42,5 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 
      */
     Route::resource('users', 'UserController');
 });
+
+Route::stripeWebhooks('stripe-webhook');

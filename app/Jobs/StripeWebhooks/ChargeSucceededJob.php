@@ -36,9 +36,9 @@ class ChargeSucceededJob implements ShouldQueue
         $user = User::where('stripe_id', $charge['customer'])->first();
 
         $subtotal = $charge['amount'];
-        Log::info($subtotal);
         $taxPercent = $user->taxPercentage();
         $taxAmount = round($subtotal * $taxPercent / 100);
+        Log::info($taxAmount);
 
         if($user)
         {

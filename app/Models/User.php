@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -23,6 +24,8 @@ use Laravel\Cashier\Billable;
  * @property string $two_factor_recovery_codes
  * @property string $type
  * @property string $remember_token
+ *
+ * @mixin Builder
  */
 class User extends Authenticatable
 {

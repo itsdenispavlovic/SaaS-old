@@ -62,7 +62,7 @@ class CheckoutController extends Controller
             Auth::user()->newSubscription(
                 'default', $plan->stripe_plan_id
             )
-                ->trialDays(10)
+//                ->trialDays(10)
                 ->withCoupon($request->get('coupon'))
                 ->create($request->get('payment-method'));
             Auth::user()->update([

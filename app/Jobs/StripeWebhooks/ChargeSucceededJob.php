@@ -32,11 +32,11 @@ class ChargeSucceededJob implements ShouldQueue
     {
         $charge = $this->webhookCall->payload['data']['object'];
 
-        Log::info($this->webhookCall->payload['data']);
+        Log::info($this->webhookCall->payload);
 
         $user = User::where('stripe_id', $charge['customer'])->first();
 
-        Log::info($charge);
+//        Log::info($charge);
 
         if($user)
         {

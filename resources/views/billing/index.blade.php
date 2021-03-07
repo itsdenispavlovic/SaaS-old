@@ -107,7 +107,7 @@
                 </table>
                 @else
                     <div class="alert alert-info">
-                        There are not payment made.
+                        There are no payments made.
                     </div>
                 @endif
             </div>

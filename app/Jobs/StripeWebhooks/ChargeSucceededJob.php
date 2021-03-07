@@ -12,6 +12,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Auth;
 use Log;
 use Spatie\WebhookClient\Models\WebhookCall;
 
@@ -32,11 +33,12 @@ class ChargeSucceededJob implements ShouldQueue
     {
         $charge = $this->webhookCall->payload['data']['object'];
 
-        Log::info($this->webhookCall->payload);
-
         $user = User::where('stripe_id', $charge['customer'])->first();
 
-//        Log::info($charge);
+        $subtotal = $charge['amount'];
+        Log::info($subtotal);
+        $taxPercent = $user->taxPercentage();
+        $taxAmount = round($subtotal * $taxPercent / 100);
 
         if($user)
         {

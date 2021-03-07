@@ -23,10 +23,39 @@
                     <br />
                 @endif
                 <div class="row">
-                    @foreach($plans as $plan)
+                    <div class="col">
+                        <input type="radio" name="billing_period" value="monthly" checked> Monthly
+                        <input type="radio" name="billing_period" value="yearly"> Yearly
+                    </div>
+                </div>
+                <hr>
+                <div class="row" id="plans_monthly">
+                    @foreach($monthlyPlan as $plan)
                         <div class="col-md-4 text-center">
                             <h3>{{ $plan->name }}</h3>
                             <b>${{ $plan->price }} / month</b>
+                            <hr>
+                            @if(!is_null($currentPlan) && $plan->stripe_plan_id == $currentPlan->stripe_plan)
+                                Your current plan.
+                                <br />
+                                @if(!$currentPlan->onGracePeriod())
+                                    <a href="{{ route('cancel.plan') }}" class="btn btn-danger" onclick="return confirm('Are you sure?');">Cancel plan</a>
+                                @else
+                                    Your subscription will end on {{ $currentPlan->ends_at->toDateString() }}
+                                    <br>
+                                    <a href="{{ route('resume.plan') }}" class="btn btn-primary">Resume subscription</a>
+                                @endif
+                            @else
+                                <a href="{{ route('checkout', $plan->id) }}" class="btn btn-primary">Subscribe to {{ $plan->name }}</a>
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+                <div class="row d-none" id="plans_yearly">
+                    @foreach($yearlyPlan as $plan)
+                        <div class="col-md-4 text-center">
+                            <h3>{{ $plan->name }}</h3>
+                            <b>${{ $plan->price }} / year</b>
                             <hr>
                             @if(!is_null($currentPlan) && $plan->stripe_plan_id == $currentPlan->stripe_plan)
                                 Your current plan.
@@ -117,3 +146,16 @@
         <br>
     </div>
 @stop
+
+@push('scripts')
+    <script>
+        $(document).ready(() => {
+            $('input[name=billing_period]').change(function() {
+                $('#plans_yearly').addClass('d-none');
+                $('#plans_monthly').addClass('d-none');
+                let billing_period = $(this).filter(':checked').val();
+                $('#plans_' + billing_period).removeClass('d-none');
+            });
+        });
+    </script>
+@endpush

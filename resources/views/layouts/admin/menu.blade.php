@@ -4,3 +4,9 @@
         <span>Users</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/plans*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.plans.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Plans</span>
+    </a>
+</li>

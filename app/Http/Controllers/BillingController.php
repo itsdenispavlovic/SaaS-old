@@ -19,7 +19,9 @@ class BillingController extends Controller
      */
     public function index()
     {
-        $plans = Plan::all();
+        $monthlyPlan = Plan::where('billing_period', Plan::MONTHLY_PERIOD)->get();
+        $yearlyPlan = Plan::where('billing_period', Plan::YEARLY_PERIOD)->get();
+
         $currentPlan = Auth::user()->subscription('default') ?? NULL;
         if(!is_null($currentPlan))
         {
@@ -29,7 +31,7 @@ class BillingController extends Controller
 
         $payments = Payment::where('user_id', Auth::id())->latest()->get();
 
-        return view('billing.index', compact('plans', 'currentPlan', 'paymentMethods', 'defaultPaymentMethod', 'payments'));
+        return view('billing.index', compact('monthlyPlan', 'yearlyPlan', 'currentPlan', 'paymentMethods', 'defaultPaymentMethod', 'payments'));
     }
 
     /**

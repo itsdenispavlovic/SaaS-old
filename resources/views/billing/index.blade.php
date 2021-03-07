@@ -29,46 +29,12 @@
                 <hr>
                 <div class="row" id="plans_monthly">
                     @foreach($monthlyPlan as $plan)
-                        <div class="col-md-4 text-center">
-                            <h3>{{ $plan->name }}</h3>
-                            <b>${{ $plan->price }} / month</b>
-                            <hr>
-                            @if(!is_null($currentPlan) && $plan->stripe_plan_id == $currentPlan->stripe_plan)
-                                Your current plan.
-                                <br />
-                                @if(!$currentPlan->onGracePeriod())
-                                    <a href="{{ route('cancel.plan') }}" class="btn btn-danger" onclick="return confirm('Are you sure?');">Cancel plan</a>
-                                @else
-                                    Your subscription will end on {{ $currentPlan->ends_at->toDateString() }}
-                                    <br>
-                                    <a href="{{ route('resume.plan') }}" class="btn btn-primary">Resume subscription</a>
-                                @endif
-                            @else
-                                <a href="{{ route('checkout', $plan->id) }}" class="btn btn-primary">Subscribe to {{ $plan->name }}</a>
-                            @endif
-                        </div>
+                        <x-plan-item :plan="$plan" :currentPlan="$currentPlan" :billingPeriod="$plan->billing_period"></x-plan-item>
                     @endforeach
                 </div>
                 <div class="row d-none" id="plans_yearly">
                     @foreach($yearlyPlan as $plan)
-                        <div class="col-md-4 text-center">
-                            <h3>{{ $plan->name }}</h3>
-                            <b>${{ $plan->price }} / year</b>
-                            <hr>
-                            @if(!is_null($currentPlan) && $plan->stripe_plan_id == $currentPlan->stripe_plan)
-                                Your current plan.
-                                <br />
-                                @if(!$currentPlan->onGracePeriod())
-                                    <a href="{{ route('cancel.plan') }}" class="btn btn-danger" onclick="return confirm('Are you sure?');">Cancel plan</a>
-                                @else
-                                    Your subscription will end on {{ $currentPlan->ends_at->toDateString() }}
-                                    <br>
-                                    <a href="{{ route('resume.plan') }}" class="btn btn-primary">Resume subscription</a>
-                                @endif
-                            @else
-                                <a href="{{ route('checkout', $plan->id) }}" class="btn btn-primary">Subscribe to {{ $plan->name }}</a>
-                            @endif
-                        </div>
+                        <x-plan-item :plan="$plan" :currentPlan="$currentPlan" :billingPeriod="$plan->billing_period"></x-plan-item>
                     @endforeach
                 </div>
             </div>
@@ -118,6 +84,7 @@
                 Payment history
             </div>
             <div class="card-body">
+                @if(count($payments) > 0)
                 <table class="table">
                     <thead>
                     <tr>
@@ -138,6 +105,11 @@
                         @endforeach
                     </tbody>
                 </table>
+                @else
+                    <div class="alert alert-info">
+                        There are not payment made.
+                    </div>
+                @endif
             </div>
         </div>
 

@@ -18,7 +18,8 @@
                         <form action="{{ route('checkout.process') }}" method="POST" id="checkout-form">
                             @csrf
 
-                            <input type="hidden" id="plan-paying-amount" value="{{ $plan->price }}">
+                            <input type="hidden" id="plan-paying-amount" value="{{ $subtotal }}" />
+                            <input type="hidden" id="tax-percent" value="{{ $taxPercent }}">
 
                             <div class="row">
                                 <div class="col-md-4">
@@ -91,8 +92,19 @@
 
                             <br />
 
+                            Subtotal:
+                            <span class="font-weight-bold" id="amount_subtotal">${{ $subtotal }}</span>
+                            <br>
+                            Tax ({{ $taxPercent }}%):
+                            <span class="font-weight-bold" id="amount_taxes">${{ $taxAmount }}</span>
+                            <br>
+                            Total:
+                            <span class="font-weight-bold" id="amount_total">${{ $total }}</span>
+
+                            <hr>
+
                             <button id="card-button" class="btn btn-primary">
-                                Pay ${{ $plan->price }}
+                                Pay ${{ $total }}
                             </button>
 
                         </form>
@@ -154,7 +166,6 @@
                 return false
             });
 
-            // @TODO: refactor
             $('#coupon-check').on('click', function (e) {
                 $('#coupon-text').text('');
                 $.get({
@@ -165,12 +176,21 @@
                     if(result.error_text)
                     {
                         $('#coupon-text').text(result.error_text)
+
                     }
                     else
                     {
                         $('#coupon-text').text(result.name);
                         let plan_paying_amount = parseFloat($('#plan-paying-amount').val());
-                        let pay_amount = plan_paying_amount - plan_paying_amount * parseFloat(result.percent_off) / 100;
+                        let tax_percent = $('#tax-percent').val();
+                        let pay_amount = (plan_paying_amount * (1 - parseFloat(result.percent_off) / 100)).toFixed(2);
+                        $('#amount_subtotal').text('$' + pay_amount);
+                        let tax_amount = (pay_amount * tax_percent / 100).toFixed(2);
+                        $('#amount_taxes').text('$' + tax_amount);
+                        pay_amount = (parseFloat(pay_amount) + parseFloat(tax_amount)).toFixed(2);
+                        $('#amount_total').text('$' + pay_amount);
+                        $('#card-button').text('Pay $' + pay_amount);
+                        $('#amount_total').text('$' + pay_amount.toFixed(2));
                         $('#card-button').text("Pay $" + pay_amount.toFixed(2));
                     }
                 });

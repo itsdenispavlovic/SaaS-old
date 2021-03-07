@@ -123,4 +123,13 @@ class User extends Authenticatable
 //    }
     // In tasks/index.php use @can('tasks_create) => they can create @else You have reached the limit of your plan. Please /route billing/ Upgrade your plan
 
+    /**
+     * Write the Tax Percentage
+     *
+     * @return int
+     */
+    public function taxPercentage(): int
+    {
+        return 10;
+    }
 }

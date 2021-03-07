@@ -39,9 +39,14 @@ class CheckoutController extends Controller
             return redirect()->route('billing');
         }
 
+        $subtotal = $plan->price;
+        $taxPercent = Auth::user()->taxPercentage();
+        $taxAmount = round($subtotal * $taxPercent / 100);
+        $total = $subtotal + $taxAmount;
+
         $intent = Auth::user()->createSetupIntent();
 
-        return view('billing.checkout', compact('plan', 'intent', 'countries'));
+        return view('billing.checkout', compact('plan', 'intent', 'countries', 'subtotal', 'taxPercent', 'taxAmount', 'total'));
     }
 
     /**

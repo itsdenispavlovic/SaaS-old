@@ -116,4 +116,11 @@ class User extends Authenticatable
         return "{$this->first_name} {$this->last_name}";
     }
 
+    // Here add the features like this
+//    public function tasks()
+//    {
+//        return $this->hasMany(Task::class);
+//    }
+    // In tasks/index.php use @can('tasks_create) => they can create @else You have reached the limit of your plan. Please /route billing/ Upgrade your plan
+
 }

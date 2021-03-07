@@ -34,6 +34,8 @@ class ChargeSucceededJob implements ShouldQueue
 
         $user = User::where('stripe_id', $charge['customer'])->first();
 
+        Log::info($charge);
+
         if($user)
         {
             $payment = Payment::create([

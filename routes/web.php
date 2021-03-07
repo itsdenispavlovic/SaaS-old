@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('billing', [BillingController::class, 'index'])->name('billing');
+    Route::get('coupon', [CheckoutController::class, 'checkCoupon'])->name('coupon');
     Route::get('checkout/{plan_id}', [CheckoutController::class, 'checkout'])->name('checkout');
     Route::post('checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
     Route::get('cancel', [BillingController::class, 'cancelPlan'])->name('cancel.plan');

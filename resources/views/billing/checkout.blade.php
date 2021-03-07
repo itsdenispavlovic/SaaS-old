@@ -18,6 +18,8 @@
                         <form action="{{ route('checkout.process') }}" method="POST" id="checkout-form">
                             @csrf
 
+                            <input type="hidden" id="plan-paying-amount" value="{{ $plan->price }}">
+
                             <div class="row">
                                 <div class="col-md-4">
                                     Name or Company Name:
@@ -60,6 +62,21 @@
                                     <input type="text" name="postcode" class="form-control">
                                 </div>
 
+                            </div>
+
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    Discount code:
+                                    <br>
+                                    <input type="text" name="coupon" id="coupon" class="form-control">
+                                    <div id="coupon-text" style="font-size: 13px"></div>
+                                </div>
+                                <div class="col-md-8">
+                                    <br>
+                                    <input type="button" name="coupon-check" id="coupon-check" value="Apply code" class="btn btn-sm btn-primary">
+                                </div>
                             </div>
 
                             <br>
@@ -135,6 +152,28 @@
                     }
                 })
                 return false
+            });
+
+            // @TODO: refactor
+            $('#coupon-check').on('click', function (e) {
+                $('#coupon-text').text('');
+                $.get({
+                    url: "{{ route('coupon') }}?coupon_code=" + $('#coupon').val(),
+                    contentType: 'application/json',
+                    dataType: 'json'
+                }).done(function(result) {
+                    if(result.error_text)
+                    {
+                        $('#coupon-text').text(result.error_text)
+                    }
+                    else
+                    {
+                        $('#coupon-text').text(result.name);
+                        let plan_paying_amount = parseFloat($('#plan-paying-amount').val());
+                        let pay_amount = plan_paying_amount - plan_paying_amount * parseFloat(result.percent_off) / 100;
+                        $('#card-button').text("Pay $" + pay_amount.toFixed(2));
+                    }
+                });
             })
         });
     </script>

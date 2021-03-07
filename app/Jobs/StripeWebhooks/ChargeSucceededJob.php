@@ -28,17 +28,16 @@ class ChargeSucceededJob implements ShouldQueue
         $this->webhookCall = $webhookCall;
     }
 
-    // @todo: need to be tested on server
     public function handle()
     {
         $charge = $this->webhookCall->payload['data']['object'];
 
         $user = User::where('stripe_id', $charge['customer'])->first();
 
+        // @Todo: need to be fixed and integrate VAT Calculator
         $subtotal = $charge['amount'];
         $taxPercent = $user->taxPercentage();
         $taxAmount = round($subtotal * $taxPercent / 100);
-        Log::info($taxAmount);
 
         if($user)
         {
@@ -46,7 +45,7 @@ class ChargeSucceededJob implements ShouldQueue
                 'user_id' => $user->id,
                 'stripe_id' => $charge['id'],
                 'subtotal' => $charge['amount'],
-                'tax' => $charge['tax'],
+                'tax' => $taxAmount,
                 'total' => $charge['amount']
             ]);
 

@@ -97,7 +97,7 @@
                         @foreach($payments as $payment)
                             <tr>
                                 <td>{{ $payment->created_at }}</td>
-                                <td>{{ $payment->total }}</td>
+                                <td>${{ $payment->total }}</td>
                                 <td>
                                     <a href="{{ route('invoices.download', $payment->id) }}" class="btn btn-sm btn-primary">Download invoice</a>
                                 </td>

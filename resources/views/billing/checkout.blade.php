@@ -137,7 +137,10 @@
                 }
             }
 
-            let card = elements.create('card', {style: style})
+            let card = elements.create('card', {
+                hidePostalCode: true,
+                style: style
+            })
             card.mount('#card-element')
 
             let paymentMethod = null

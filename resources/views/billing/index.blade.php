@@ -19,8 +19,6 @@
                     <div class="alert alert-info">
                         Your trial will end on {{ $currentPlan->trial_ends_at->toDateString() }} and your card will be charged.
                     </div>
-                    <br/>
-                    <br />
                 @endif
                 <div class="row">
                     <div class="col">

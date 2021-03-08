@@ -19,15 +19,15 @@
             <td>{{ $user->email }}</td>
             <td>{{ $user->type }}</td>
                 <td>
-                    @if($user->id != auth()->id())
+                    @if($user->id != auth()->id() || $user->id != 1)
                         {!! Form::open(['route' => ['admin.users.destroy', $user->id], 'method' => 'delete']) !!}
                     @endif
                     <div class='btn-group'>
                         <a href="{{ route('admin.users.show', [$user->id]) }}" class='btn btn-ghost-success'><i class="fa fa-eye"></i></a>
                         <a href="{{ route('admin.users.edit', [$user->id]) }}" class='btn btn-ghost-info'><i class="fa fa-edit"></i></a>
-                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', ($user->id == auth()->id() ? 'disabled' : ''), 'onclick' => "return confirm('Are you sure?')"]) !!}
+                        {!! Form::button('<i class="fa fa-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-ghost-danger', ($user->id == auth()->id() || $user->id != 1 ? 'disabled' : ''), 'onclick' => "return confirm('Are you sure?')"]) !!}
                     </div>
-                    @if($user->id != auth()->id())
+                    @if($user->id != auth()->id() || $user->id != 1)
                         {!! Form::close() !!}
                     @endif
                 </td>

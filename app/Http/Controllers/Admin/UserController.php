@@ -161,7 +161,7 @@ class UserController extends AppBaseController
             return redirect(route('admin.users.index'));
         }
 
-        if($user->id != Auth::id() && $user->id != 1)
+        if($user->id != Auth::id() || $user->id != 1)
         {
             $this->userRepository->delete($id);
 

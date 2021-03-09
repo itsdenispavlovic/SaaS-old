@@ -27,7 +27,7 @@
             </div>
 
             <hr>
-            <div class="row flex vcenter" id="plans_monthly">
+            <div class="row flex vcenter mt-4" id="plans_monthly">
                 @foreach($monthlyPlan as $plan)
                     <x-plan-item :plan="$plan" :currentPlan="$currentPlan" :billingPeriod="$plan->billing_period"></x-plan-item>
                 @endforeach

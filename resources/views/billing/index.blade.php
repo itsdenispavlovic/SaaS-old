@@ -1,9 +1,9 @@
 @extends('layouts._frontend')
 
 @section('content')
-    <section class="section is-sm section-plans">
+    <section class="section is-sm section-plans pt-1">
         <img class="section-particle top-0" src="../assets/images/others/particle.svg" alt="">
-        <div class="container">
+        <div class="container mt-0">
             <div class="ml-4">
                 @if(Session::has('message'))
                     <div class="alert alert-info">

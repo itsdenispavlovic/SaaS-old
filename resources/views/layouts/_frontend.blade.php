@@ -21,6 +21,11 @@
 </head>
 <body>
 <!-- =========================== header-->
+@if(auth()->check() && auth()->user()->trial_ends_at)
+    <div class="alert alert-info text-center mb-0 rounded-0">
+        You have {{ now()->diffInDays(auth()->user()->trial_ends_at) }} days of free trial left. <a href="{{ route('billing') }}">Choose your plan</a> at any time.
+    </div>
+@endif
 <header class="header has-style2">
     <!-- =========================== navbar-->
     <nav class="navbar is-dark">
@@ -91,9 +96,19 @@
             <div class="level-right">
                 <!-- your list menu here -->
                 <div class="navbar-menu">
-                    <a href="{{ route('login') }}" data-aos="fade-left" data-aos-delay="400" class="btn btn-green btn-round"> Get
-                        Started
-                    </a>
+                    @if(Auth::check())
+                        <a href="{{ url('/logout') }}" data-aos="fade-left" data-aos-delay="400" class="btn btn-green btn-round"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="fa fa-lock"></i> Logout
+                        </a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <a href="{{ route('login') }}" data-aos="fade-left" data-aos-delay="400" class="btn btn-green btn-round"> Get
+                            Started
+                        </a>
+                    @endif
                 </div>
 {{--                <div class="mobile-menu">--}}
 {{--                    <!-- your list menu in mobile here -->--}}

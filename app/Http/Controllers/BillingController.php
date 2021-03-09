@@ -22,13 +22,19 @@ class BillingController extends Controller
         $monthlyPlan = Plan::where('billing_period', Plan::MONTHLY_PERIOD)->get();
         $yearlyPlan = Plan::where('billing_period', Plan::YEARLY_PERIOD)->get();
 
-        $currentPlan = Auth::user()->subscription('default') ?? NULL;
         $paymentMethods = [];
         $defaultPaymentMethod = null;
-        if(!is_null($currentPlan))
+        $currentPlan = null;
+
+        if(Auth::check())
         {
-            $paymentMethods = Auth::user()->paymentMethods();
-            $defaultPaymentMethod = Auth::user()->defaultPaymentMethod();
+            $currentPlan = Auth::user()->subscription('default') ?? NULL;
+
+            if(!is_null($currentPlan))
+            {
+                $paymentMethods = Auth::user()->paymentMethods();
+                $defaultPaymentMethod = Auth::user()->defaultPaymentMethod();
+            }
         }
 
         $payments = Payment::where('user_id', Auth::id())->latest()->get();

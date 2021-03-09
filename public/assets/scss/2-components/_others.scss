@@ -1,0 +1,225 @@
+/*====================================
+    ========= Lists
+    =====================================*/
+.list {
+    margin-bottom: 1rem;
+    box-shadow: none;
+    background: none;
+    border: none;
+
+    .list-item {
+        display: flex;
+
+        .icon {
+            color: $primary;
+            margin-right: 1rem;
+        }
+
+        &.has-style1 {
+            background: $bg-grey;
+            border: none;
+            box-shadow: none;
+
+
+        }
+    }
+}
+
+.box {
+    padding: 40px 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+
+    .box-particles {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .box-particles2 {
+        position: absolute;
+        top: -1rem;
+        right: -1rem;
+    }
+
+    .box-num {
+        font-size: 3rem;
+        font-weight: 900;
+        line-height: 100%;
+        margin-bottom: 15px;
+    }
+
+    .row {
+        padding: 0;
+        margin: 0;
+    }
+
+    .col,
+    .col-auto {
+        padding: 0;
+        margin: 0;
+    }
+
+    .col,
+        {
+        margin-left: 10px;
+    }
+
+
+    .box-icon {
+        ion-icon {
+            font-size: 3rem;
+        }
+    }
+
+    .box-title {
+        margin-bottom: 15px;
+    }
+
+    .box-desc {}
+
+    &.has-primary-bg {
+        background: $primary;
+        transition: 0.2s cubic-bezier(0.5, 0, 0.35, 1);
+
+        &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 14px 33px -3px rgba(0, 0, 0, 0.098);
+        }
+
+        .box-icon {
+            ion-icon {
+                color: $white;
+            }
+        }
+
+        .box-title {
+            color: $white;
+        }
+
+        .box-desc {
+            color: $white;
+        }
+    }
+
+    &.has-grad1 {
+        background: $grad1;
+        transition: 0.2s cubic-bezier(0.5, 0, 0.35, 1);
+
+        &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 14px 33px -3px rgba(0, 0, 0, 0.098);
+        }
+
+        .box-icon {
+            ion-icon {
+                color: $white;
+            }
+        }
+
+        .box-title {
+            color: $white;
+        }
+
+        .box-desc {
+            color: $white;
+        }
+    }
+
+    &.has-grad2 {
+        background: $grad2;
+        transition: 0.2s cubic-bezier(0.5, 0, 0.35, 1);
+
+        &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 14px 33px -3px rgba(0, 0, 0, 0.098);
+        }
+
+        .box-icon {
+            ion-icon {
+                color: $white;
+            }
+        }
+
+        .box-title {
+            color: $white;
+        }
+
+        .box-desc {
+            color: $white;
+        }
+    }
+
+    &.has-blue-text {
+        .box-title {
+            color: #3639A3;
+        }
+
+        .box-desc {
+            color: #3639A3;
+
+        }
+
+        svg {
+            color: #3639A3;
+
+        }
+
+        ion-icon {
+            color: #3639A3;
+
+        }
+
+        path {
+            color: #3639A3;
+
+        }
+    }
+
+    &.has-secondary-bg {
+        background: $secondary;
+        transition: 0.2s cubic-bezier(0.5, 0, 0.35, 1);
+
+        &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 14px 33px -3px rgba(0, 0, 0, 0.098);
+        }
+
+        .box-icon {
+            ion-icon {
+                color: $white;
+            }
+        }
+
+        .box-title {
+            color: $white;
+        }
+
+        .box-desc {
+            color: $white;
+        }
+    }
+
+    &.has-shadow {
+        background: $white;
+        box-shadow: 0 0 0 0 #eee;
+        box-shadow: 0 14px 33px -3px rgba(0, 0, 0, 0.078);
+        transition: 0.2s cubic-bezier(0.5, 0, 0.35, 1);
+
+        &:hover {
+            transform: scale(1.02);
+            box-shadow: 0 14px 33px -3px rgba(0, 0, 0, 0.098);
+        }
+
+    }
+
+    &.has-left-icon {
+        .box-title {
+            margin: 5px 0 10px;
+        }
+
+    }
+}

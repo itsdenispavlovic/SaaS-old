@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="927" height="918" viewBox="0 0 927 918">
+  <defs>
+    <filter id="Rectangle_708" x="0" y="0" width="530" height="531" filterUnits="userSpaceOnUse">
+      <feOffset dy="22" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="29.5" result="blur"/>
+      <feFlood flood-color="#535a7e" flood-opacity="0.11"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_709" x="397" y="0" width="530" height="531" filterUnits="userSpaceOnUse">
+      <feOffset dy="22" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="29.5" result="blur-2"/>
+      <feFlood flood-color="#535a7e" flood-opacity="0.11"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_710" x="194" y="387" width="530" height="531" filterUnits="userSpaceOnUse">
+      <feOffset dy="22" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="29.5" result="blur-3"/>
+      <feFlood flood-color="#535a7e" flood-opacity="0.11"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="1.742" y1="-0.89" x2="0.317" y2="1.634" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#23218e"/>
+      <stop offset="1" stop-color="#d72f86"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="1" y1="0.165" x2="-0.006" y2="0.5" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="0.289" y1="1" x2="0.859" y2="0.074" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="grad1" transform="translate(19737.5 3541.5)">
+    <g id="illustration1" transform="translate(-20644 -5795)">
+      <g transform="matrix(1, 0, 0, 1, 906.5, 2253.5)" filter="url(#Rectangle_708)">
+        <rect id="Rectangle_708-2" data-name="Rectangle 708" width="353" height="354" rx="10" transform="translate(88.5 66.5)" fill="#fff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 906.5, 2253.5)" filter="url(#Rectangle_709)">
+        <rect id="Rectangle_709-2" data-name="Rectangle 709" width="353" height="354" rx="10" transform="translate(485.5 66.5)" fill="#fff"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, 906.5, 2253.5)" filter="url(#Rectangle_710)">
+        <rect id="Rectangle_710-2" data-name="Rectangle 710" width="353" height="354" rx="10" transform="translate(282.5 453.5)" fill="#fff"/>
+      </g>
+      <path id="Path_16225" data-name="Path 16225" d="M774.412,428.28c10.126-8.61,24.98-12.661,34.186-10.858,9.327,2.78,18.027,10.272,20.213,19.658,1.043,9.079-8.461,27.225-28.367,26.824-10.465-.788-19.064-11.95-25.985-20.682C769.637,436.812,770.077,432.461,774.412,428.28Z" transform="translate(813.422 2572.944)" fill="url(#linear-gradient)"/>
+    </g>
+    <rect id="Rectangle_860" data-name="Rectangle 860" width="288" height="19" rx="9.5" transform="translate(-19418 -2859)" fill="url(#linear-gradient-2)"/>
+    <rect id="Rectangle_861" data-name="Rectangle 861" width="144" height="19" rx="9.5" transform="translate(-19143 -3245)" fill="#dfdfe8"/>
+    <rect id="Rectangle_862" data-name="Rectangle 862" width="209" height="19" rx="9.5" transform="translate(-19585 -3245)" fill="#dfdfe8"/>
+    <rect id="Rectangle_863" data-name="Rectangle 863" width="171" height="19" rx="9.5" transform="translate(-19566 -3212)" fill="#dfdfe8"/>
+    <rect id="Rectangle_864" data-name="Rectangle 864" width="271" height="19" rx="9.5" transform="translate(-19207 -3213)" fill="#dfdfe8"/>
+    <circle id="Ellipse_705" data-name="Ellipse 705" cx="74.5" cy="74.5" r="74.5" transform="translate(-19353 -3047)" fill="url(#linear-gradient-3)"/>
+    <g id="_ionicons_svg_md-cloudy_2_" data-name="_ionicons_svg_md-cloudy (2)" transform="translate(-19318.564 -3000.796)" style="mix-blend-mode: overlay;isolation: isolate">
+      <path id="Path_16615" data-name="Path 16615" d="M123.4,182.835c.071-.018.141-.018.212-.035A1.059,1.059,0,0,1,123.4,182.835Z" transform="translate(-107.26 -169.238)" fill="#fff"/>
+      <path id="Path_16616" data-name="Path 16616" d="M95.784,125.99A24.732,24.732,0,0,0,71.556,106c-7.011,0-13.421,2.472-17.818,8.017a24.814,24.814,0,0,1,16.017,7.028,25.271,25.271,0,0,1,6.6,11.443H70.443a19.636,19.636,0,0,0-18.665-13.244,19.972,19.972,0,0,0-3.638.353,19.866,19.866,0,0,0,3.638,39.379H94.636a16.515,16.515,0,0,0,1.148-32.987Z" transform="translate(-32 -106)" fill="#fff"/>
+    </g>
+    <circle id="Ellipse_706" data-name="Ellipse 706" cx="63" cy="63" r="63" transform="translate(-19544 -3416)" fill="url(#linear-gradient-3)"/>
+    <circle id="Ellipse_707" data-name="Ellipse 707" cx="65.5" cy="65.5" r="65.5" transform="translate(-19137 -3421)" fill="url(#linear-gradient-3)"/>
+    <circle id="Ellipse_708" data-name="Ellipse 708" cx="19.5" cy="19.5" r="19.5" transform="translate(-19353 -3174)" fill="url(#linear-gradient-3)"/>
+    <g id="_ionicons_svg_md-finger-print_1_" data-name="_ionicons_svg_md-finger-print (1)" transform="translate(-19097.979 -3387.553)" style="mix-blend-mode: overlay;isolation: isolate">
+      <path id="Path_16617" data-name="Path 16617" d="M65.953,101.273a1.941,1.941,0,0,1-1.69-2.909C66.728,94.209,74.222,84.5,90.593,84.5a30.968,30.968,0,0,1,18.477,5.6,31.347,31.347,0,0,1,7.77,8.158,1.925,1.925,0,0,1-.512,2.687,1.97,1.97,0,0,1-2.715-.512c-2.064-2.992-8.324-12.078-23.02-12.078-14.349,0-20.831,8.366-22.951,11.953A1.912,1.912,0,0,1,65.953,101.273Z" transform="translate(-64 -77.228)" fill="#fff"/>
+      <path id="Path_16618" data-name="Path 16618" d="M112.437,184.163a1.928,1.928,0,0,1-.485-.055c-11.87-2.978-16.3-14.973-16.482-15.471l-.028-.111c-.1-.346-2.479-8.574,1.177-13.394,1.676-2.2,4.224-3.324,7.59-3.324,3.13,0,5.388.983,6.939,3.019a15.116,15.116,0,0,1,2.285,5.693c1.039,4.114,1.787,6.274,6.108,6.5a4.461,4.461,0,0,0,3.85-1.981c1.911-2.6,2.244-6.856.8-10.6-1.856-4.848-8.421-13.975-20-13.975a20.305,20.305,0,0,0-13.131,4.626,21.316,21.316,0,0,0-6.565,9.668c-2.133,6.759.665,17.383.693,17.48a1.921,1.921,0,0,1-1.385,2.355,1.967,1.967,0,0,1-2.4-1.371c-.125-.485-3.116-11.815-.651-19.627a24.616,24.616,0,0,1,39.184-11.274,27.022,27.022,0,0,1,7.895,10.72c1.911,4.986,1.4,10.582-1.3,14.239a8.3,8.3,0,0,1-7.2,3.573c-7.4-.374-8.726-5.6-9.7-9.4-1-3.906-1.634-5.79-5.443-5.79-2.091,0-3.56.582-4.474,1.787-1.247,1.648-1.344,4.224-1.205,6.094a19.894,19.894,0,0,0,.651,3.851c.3.776,4.266,10.6,13.754,12.978a1.924,1.924,0,0,1,1.413,2.341,1.966,1.966,0,0,1-1.9,1.454Z" transform="translate(-77.602 -122.112)" fill="#fff"/>
+      <path id="Path_16619" data-name="Path 16619" d="M143.081,229.453a1.972,1.972,0,0,1-1.427-.609,31.116,31.116,0,0,1-8.449-17.729v-.042c-.568-4.668.263-11.275,4.335-15.818,3.006-3.352,7.23-5.055,12.535-5.055a15.557,15.557,0,0,1,14.28,8.518,23.942,23.942,0,0,1,2.687,8.241,1.957,1.957,0,0,1-3.892.4,20.049,20.049,0,0,0-2.285-6.884,11.683,11.683,0,0,0-10.8-6.413c-4.141,0-7.382,1.26-9.612,3.754-3.213,3.587-3.837,9.114-3.393,12.77a27.313,27.313,0,0,0,7.438,15.624,1.916,1.916,0,0,1-.1,2.729A1.965,1.965,0,0,1,143.081,229.453Z" transform="translate(-123.482 -168.288)" fill="#fff"/>
+      <path id="Path_16620" data-name="Path 16620" d="M150.884,87.611a16.107,16.107,0,0,1-10.513-3.477c-5.679-4.626-6.316-12.161-6.344-12.48a1.952,1.952,0,0,1,3.892-.3c.014.111.582,6.274,4.959,9.82,2.59,2.091,6.053,2.923,10.319,2.438a1.947,1.947,0,0,1,2.161,1.7,1.923,1.923,0,0,1-1.717,2.133A23.707,23.707,0,0,1,150.884,87.611Zm3.283-51.372C152.546,35.172,146.8,32,135.994,32c-11.344,0-17.106,3.5-18.38,4.391a1.513,1.513,0,0,0-.235.18.043.043,0,0,1-.028.014,1.924,1.924,0,0,0,1.3,3.366,1.978,1.978,0,0,0,1.136-.36l-.014.014c.055-.042,5.028-3.74,16.219-3.74s16.164,3.712,16.219,3.74l-.014-.014.028-.028a1.941,1.941,0,1,0,1.939-3.324Z" transform="translate(-109.401 -32)" fill="#fff"/>
+    </g>
+    <path id="_ionicons_svg_ios-flash_1_" data-name="_ionicons_svg_ios-flash (1)" d="M168.031,62.946H150.561l8.46-30.176a.653.653,0,0,0-1.162-.549L128.2,71.116a1.362,1.362,0,0,0,1.017,2.163h17.469l-8.46,30.176a.653.653,0,0,0,1.162.549l29.659-38.878A1.377,1.377,0,0,0,168.031,62.946Z" transform="translate(-19629.611 -3421.917)" fill="#fff" style="mix-blend-mode: overlay;isolation: isolate"/>
+    <path id="_ionicons_svg_md-flower" d="M77.747,56.383a2.984,2.984,0,0,0-1.294-5.691,3.035,3.035,0,0,0-1.717.528l.024-.226a3.023,3.023,0,0,0-6.045,0l.024.226a3,3,0,1,0-3.011,5.163,2.984,2.984,0,0,0,1.294,5.691,3.035,3.035,0,0,0,1.717-.528l-.024.226a3.023,3.023,0,0,0,6.045,0l-.024-.226a3,3,0,1,0,3.011-5.163Zm-6.009,2.994a2.995,2.995,0,1,1,3.023-2.994A3.01,3.01,0,0,1,71.738,59.377Z" transform="translate(-19405.477 -3211.016)" fill="#fff" style="mix-blend-mode: overlay;isolation: isolate"/>
+    <rect id="Rectangle_865" data-name="Rectangle 865" width="139" height="19" rx="9.5" transform="translate(-19349 -2826)" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>

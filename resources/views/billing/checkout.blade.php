@@ -1,7 +1,7 @@
 @extends('layouts._frontend')
 
 @section('content')
-    <div class="container">
+    <div class="container mb-5">
         <div class="card">
             <div class="card-header">
                 Subscribe to {{ $plan->name }}

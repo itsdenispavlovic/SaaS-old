@@ -172,7 +172,8 @@ class Node extends Model
                 $resource = $resource->where("is_sitemap", 1);
             }
 
-            $resource = $resource->where("published", 1)->where("display_at", "<", date("Y-m-d H:i:s"));
+//            $resource = $resource->where("published", 1)->where("display_at", "<", date("Y-m-d H:i:s"));
+            $resource = $resource->where("published", 1);
         }
 
         return $resource;

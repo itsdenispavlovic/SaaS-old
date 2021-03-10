@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PaymentMethodController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index']);
 
 Route::get('billing', [BillingController::class, 'index'])->name('billing');
 
@@ -41,11 +40,19 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 
     Route::get('/', 'HomeController@index')->name('dashboard');
 
     /**
+     * Plans
+     */
+    Route::resource('plans', 'PlanController');
+
+    /**
+     * Nodes
+     */
+    Route::resource('nodes', 'NodeController');
+
+    /**
      * Users
      */
     Route::resource('users', 'UserController');
-
-    Route::resource('plans', 'PlanController');
 });
 
 Route::stripeWebhooks('stripe-webhook');

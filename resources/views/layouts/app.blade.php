@@ -20,17 +20,24 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css">
+
+    <!-- CKEDITOR -->
+    <script type="text/javascript" src="{{ asset("lib/ckeditor/ckeditor.js") }}"></script>
+
+    <!-- Token -->
+    <meta name="_token" content="{!! csrf_token() !!}"/>
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <header class="app-header navbar">
     <button class="navbar-toggler sidebar-toggler d-lg-none mr-auto" type="button" data-toggle="sidebar-show">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">
-        <img class="navbar-brand-full" src="https://assets.infyom.com/logo/blue_logo_150x150.png" width="30" height="30"
-             alt="InfyOm Logo">
-        <img class="navbar-brand-minimized" src="https://assets.infyom.com/logo/blue_logo_150x150.png" width="30"
-             height="30" alt="InfyOm Logo">
+    <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+        {!! config('app.name') !!}
+{{--        <img class="navbar-brand-full" src="https://assets.infyom.com/logo/blue_logo_150x150.png" width="30" height="30"--}}
+{{--             alt="InfyOm Logo">--}}
+{{--        <img class="navbar-brand-minimized" src="https://assets.infyom.com/logo/blue_logo_150x150.png" width="30"--}}
+{{--             height="30" alt="InfyOm Logo">--}}
     </a>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
@@ -86,12 +93,12 @@
 </div>
 <footer class="app-footer">
     <div>
-        <a href="https://infyom.com">InfyOm </a>
-        <span>&copy; 2019 InfyOmLabs.</span>
+        <a href="/">{!! config('app.name') !!} </a>
+        <span>&copy; {{ date('Y') }}</span>
     </div>
     <div class="ml-auto">
         <span>Powered by</span>
-        <a href="https://coreui.io">CoreUI</a>
+        <a href="https://denispavlovic.com" target="_blank">Denis Pavlovic</a>
     </div>
 </footer>
 </body>

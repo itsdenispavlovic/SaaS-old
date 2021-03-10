@@ -10,3 +10,9 @@
         <span>Plans</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/nodes*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.nodes.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Nodes</span>
+    </a>
+</li>

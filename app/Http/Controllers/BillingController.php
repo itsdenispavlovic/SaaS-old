@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\NodeHelper;
 use App\Models\Payment;
 use App\Models\Plan;
 use Illuminate\Contracts\Foundation\Application;
@@ -19,8 +20,9 @@ class BillingController extends Controller
      */
     public function index()
     {
-        $monthlyPlan = Plan::where('billing_period', Plan::MONTHLY_PERIOD)->get();
-        $yearlyPlan = Plan::where('billing_period', Plan::YEARLY_PERIOD)->get();
+        $data = NodeHelper::getData();
+        $data['monthlyPlan'] = Plan::where('billing_period', Plan::MONTHLY_PERIOD)->get();
+        $data['yearlyPlan'] = Plan::where('billing_period', Plan::YEARLY_PERIOD)->get();
 
         $paymentMethods = [];
         $defaultPaymentMethod = null;
@@ -37,9 +39,13 @@ class BillingController extends Controller
             }
         }
 
-        $payments = Payment::where('user_id', Auth::id())->latest()->get();
+        $data['paymentMethods'] = $paymentMethods;
+        $data['defaultPaymentMethod'] = $defaultPaymentMethod;
+        $data['currentPlan'] = $currentPlan;
 
-        return view('billing.index', compact('monthlyPlan', 'yearlyPlan', 'currentPlan', 'paymentMethods', 'defaultPaymentMethod', 'payments'));
+        $data['payments'] = Payment::where('user_id', Auth::id())->latest()->get();
+
+        return view('billing.index', $data);
     }
 
     /**

@@ -16,3 +16,9 @@
         <span>Nodes</span>
     </a>
 </li>
+<li class="nav-item {{ Request::is('admin/newsletters*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.newsletters.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Newsletters</span>
+    </a>
+</li>

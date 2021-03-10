@@ -31,6 +31,8 @@
 
 @section('content')
 
+    @include('sections.companies')
+
     @foreach ($sections as $section)
         @includeIf($section->property("section"))
     @endforeach

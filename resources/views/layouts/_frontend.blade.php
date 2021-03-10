@@ -20,61 +20,11 @@
                     <h3>{!! config('app.name') !!}</h3>
                 </a>
                 <ul class="navbar-menu">
-                    <li data-aos="fade-left" data-aos-delay="100"> <a class="fade-page"
-                                                                      href="/">Home</a>
-                    </li>
-{{--                    <li class="menu-item-has-children">--}}
-{{--                        <a>Gradient Demos</a>--}}
-{{--                        <ul class="sub-menu">--}}
-{{--                            <li><a class="fade-page" href="Home_1_grad.html">Home 1 <span--}}
-{{--                                        class="text-grad">Gradient</span></a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="Home_2_grad.html">Home 2 <span--}}
-{{--                                        class="text-grad">Gradient</span></a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="Home_3_grad.html">Home 3 <span--}}
-{{--                                        class="text-grad">Gradient</span></a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="Home_4_grad.html">Home 4 <span--}}
-{{--                                        class="text-grad">Gradient</span></a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="Home_5_grad.html">Home 5 <span--}}
-{{--                                        class="text-grad">Gradient</span></a>--}}
-{{--                            </li>--}}
-
-{{--                        </ul>--}}
-{{--                    </li>--}}
-{{--                    <li class="menu-item-has-children">--}}
-{{--                        <a>Pages</a>--}}
-{{--                        <ul class="sub-menu">--}}
-{{--                            <li><a class="fade-page" href="page_about.html">About</a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="page_services.html">Services</a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="page_plans.html">Plans</a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="page_blog.html">Blog</a>--}}
-{{--                            </li>--}}
-{{--                            <li><a class="fade-page" href="page_blog details.html"> Blog Details</a>--}}
-{{--                            </li>--}}
-
-{{--                            <li><a class="fade-page" href="page_Article.html"> Article</a>--}}
-{{--                            </li>--}}
-
-{{--                            <li><a class="fade-page" href="page_contact.html"> Contact</a>--}}
-{{--                            </li>--}}
-
-{{--                            <li><a class="fade-page" href="page_help.html"> Help Center </a>--}}
-{{--                            </li>--}}
-
-{{--                            <li><a class="fade-page" href="page_help.html"> 404 Page </a>--}}
-{{--                            </li>--}}
-
-
-{{--                        </ul>--}}
-{{--                    </li>--}}
-                    <li data-aos="fade-left" data-aos-delay="200"> <a class="fade-page"
-                                                                      href="{{ route('billing') }}">Plans</a> </li>
+                    @foreach($menus as $menu)
+                        <li data-aos="fade-left" data-aos-delay="100">
+                            <a class="fade-page" href="{{ $menu->slug == "home" ? '/' : $menu->slug }}">{{ $menu->menu_name }}</a>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="level-right">

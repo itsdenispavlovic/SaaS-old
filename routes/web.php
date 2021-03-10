@@ -22,7 +22,7 @@ Route::get('/', [MainController::class, 'index']);
 
 Route::get('sitemap-google.xml', [SitemapController::class, 'googleSitemap']);
 
-Route::get('billing', [BillingController::class, 'index'])->name('billing');
+Route::get('plans', [BillingController::class, 'index'])->name('billing');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('coupon', [CheckoutController::class, 'checkCoupon'])->name('coupon');
@@ -57,6 +57,15 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 
      * Users
      */
     Route::resource('users', 'UserController');
+
+    /**
+     * Newsletter
+     */
+    Route::resource('newsletters', 'NewsletterController');
 });
 
 Route::stripeWebhooks('stripe-webhook');
+
+
+Route::get('{nodePath}', [MainController::class, 'showNode'])->where('nodePath', '([A-z0-9\d\-\/_. ]+)?')->name("websitePage");
+

@@ -6,7 +6,7 @@
         <div class="header-wrap">
             <div class="row align-items-center">
                 <div class="col-lg-6">
-                    <h2 class="header-title" data-aos="fade-up" data-aos-delay="500">We Build Teams Thataaa
+                    <h2 class="header-title" data-aos="fade-up" data-aos-delay="500">We Build Teams That
                         Build Your Software</h2>
                     <p class="header-desc" data-aos="fade-up" data-aos-delay="600">Behind the word mountains, far
                         from

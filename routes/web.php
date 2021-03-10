@@ -4,6 +4,7 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index']);
+
+Route::get('sitemap-google.xml', [SitemapController::class, 'googleSitemap']);
 
 Route::get('billing', [BillingController::class, 'index'])->name('billing');
 

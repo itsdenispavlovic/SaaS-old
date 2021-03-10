@@ -7,36 +7,41 @@
                 <th>Short Description</th>
                 <th class="text-center">Published</th>
                 <th class="text-center">Is Homepage</th>
+                <th>Subpages</th>
                 <th colspan="3">Action</th>
             </tr>
         </thead>
         <tbody>
         @foreach($nodes as $node)
             <tr>
-            <td>
-                {{ $node->name }} <br/>
-                <a href="{{ asset($node->slug) }}"><i class="fa fa-copy"></i> {{ $node->slug }}</a>
-            </td>
-            <td>
-                @if(!empty($node->image))
-                    AFISARE
-                @else
-                    -
-                @endif
-            </td>
-            <td>
-                @if(!empty($node->short_description))
-                    {!! $node->short_description !!}
-                @else
-                    -
-                @endif
-            </td>
-            <td class="text-center">
-                <i class="fa fa-{{ ($node->published) ? 'check-circle' : 'minus-circle' }}"></i>
-            </td>
-            <td class="text-center">
-                <i class="fa fa-{{ ($node->is_homepage) ? 'check-circle' : 'minus-circle' }}"></i>
-            </td>
+                <td>
+                    {{ $node->name }} <br/>
+                    <a href="{{ asset($node->slug) }}"><i class="fa fa-copy"></i> {{ $node->slug }}</a>
+                </td>
+                <td>
+                    @if(!empty($node->image))
+                        AFISARE
+                    @else
+                        -
+                    @endif
+                </td>
+                <td>
+                    @if(!empty($node->short_description))
+                        {!! $node->short_description !!}
+                    @else
+                        -
+                    @endif
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-{{ ($node->published) ? 'check-circle' : 'minus-circle' }}"></i>
+                </td>
+                <td class="text-center">
+                    <i class="fa fa-{{ ($node->is_homepage) ? 'check-circle' : 'minus-circle' }}"></i>
+                </td>
+                <td>
+                    <a href="{{ route('admin.nodes.index', ['parent' => $node->id]) }}">Subpages ({{ $node->subnodes()->count() }})</a> <br/>
+                    <a href="{{ route('admin.nodes.create', ['parent' => $node->id]) }}">+ Adauga sectiune</a>
+                </td>
                 <td>
                     {!! Form::open(['route' => ['admin.nodes.destroy', $node->id], 'method' => 'delete']) !!}
                     <div class='btn-group'>

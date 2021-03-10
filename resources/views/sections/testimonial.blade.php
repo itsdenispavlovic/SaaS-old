@@ -32,7 +32,5 @@
                 <img class="section-shape2" src="../assets/images/others/testimonials-white.svg" alt="">
             </div>
         </div>
-
-
     </div>
 </section>

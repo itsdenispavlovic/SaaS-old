@@ -13,12 +13,12 @@
                          <div class="card-header">
                              <i class="fa fa-align-justify"></i>
                              Nodes
-                             <a class="pull-right" href="{{ route('admin.nodes.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
+                             <a class="pull-right" href="{{ route('admin.nodes.create', ['parent' => request()->get('parent')]) }}"><i class="fa fa-plus-square fa-lg"></i></a>
                          </div>
                          <div class="card-body">
                              @include('admin.nodes.table')
                               <div class="pull-right mr-3">
-                                     
+
                               </div>
                          </div>
                      </div>

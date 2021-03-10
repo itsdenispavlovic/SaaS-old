@@ -30,13 +30,17 @@
 @stop
 
 @section('content')
-    @include('sections.features')
 
-    @include('sections.about-img-right')
+    @foreach ($sections as $section)
+        @includeIf($section->property("section"))
+    @endforeach
+{{--    @include('sections.features')--}}
 
-    @include('sections.services')
+{{--    @include('sections.about-img-right')--}}
 
-    @include('sections.about-img-left')
+{{--    @include('sections.services')--}}
+
+{{--    @include('sections.about-img-left')--}}
 
     @include('sections.testimonial')
 @stop

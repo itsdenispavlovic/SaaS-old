@@ -3,8 +3,10 @@
 namespace App\Models;
 
 use Eloquent as Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class Node
@@ -32,6 +34,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $node_properties
  * @property string|\Carbon\Carbon $display_at
  * @property string|\Carbon\Carbon $ends_at
+ *
+ * @mixin Builder
  */
 class Node extends Model
 {
@@ -134,6 +138,125 @@ class Node extends Model
         'updated_at' => 'nullable',
         'deleted_at' => 'nullable'
     ];
+
+    /**
+     * Get the corespondent subnodes
+     * @param bool $isMenu
+     * @return
+     */
+    public function subnodes($isMenu = false)
+    {
+        $subnodes = $this->hasMany('App\Models\Node', "parent_id");
+        $subnodes = Node::pageFilter($subnodes);
+
+        if ($isMenu)
+        {
+            $subnodes = $subnodes->where("is_menu", 1)->get();
+        }
+
+        return $subnodes;
+    }
+
+    /**
+     * @param Node $resource
+     * @param bool $checkSitemap
+     * @param bool $checkAdmin
+     * @return mixed
+     */
+    static function pageFilter($resource, $checkSitemap = true, $checkAdmin = true)
+    {
+        if (!$checkAdmin || !Auth::user())
+        {
+            if ($checkSitemap)
+            {
+                $resource = $resource->where("is_sitemap", 1);
+            }
+
+            $resource = $resource->where("published", 1)->where("display_at", "<", date("Y-m-d H:i:s"));
+        }
+
+        return $resource;
+    }
+
+    /**
+     * @param $propName
+     * @return string
+     */
+    public function nodeProperty($propName)
+    {
+        return $this->property($propName);
+    }
+
+    /**
+     *
+     * @param $propName
+     * @return string
+     */
+    public function property($propName)
+    {
+        if ($this->node_properties == "")
+        {
+            return "";
+        }
+
+        if ($this->propertiesObj == null)
+        {
+            $this->setPropertyObj();
+        }
+
+        return (isset($this->propertiesObj->$propName) ? $this->propertiesObj->$propName : "");
+    }
+
+    /**
+     * @param $propName
+     * @param $propValue
+     */
+    public function setNodeProperty($propName, $propValue)
+    {
+        $this->setProperty($propName, $propValue);
+    }
+
+    /**
+     * @param $propName
+     * @param $propValue
+     */
+    public function setProperty($propName, $propValue)
+    {
+        if ($this->node_properties == "")
+        {
+            $this->propertiesObj = (object)array();
+        }
+        else if ($this->propertiesObj == null)
+        {
+            $this->setPropertyObj();
+        }
+
+        $this->propertiesObj->$propName = $propValue;
+        $this->node_properties = "";
+
+        foreach ($this->propertiesObj as $pkey => $pval)
+        {
+            $this->node_properties .= ($this->node_properties != "" ? "&" : "") . "$pkey=$pval";
+        }
+
+        $this->save();
+    }
+
+    /**
+     *
+     */
+    private function setPropertyObj(): void
+    {
+        $props = array();
+        $elems = explode("&", $this->node_properties);
+        foreach ($elems as $p)
+        {
+            list($key, $val) = explode("=", $p);
+            $props[$key] = $val;
+        }
+
+        $this->propertiesObj = (object)$props;
+    }
 
 
 }

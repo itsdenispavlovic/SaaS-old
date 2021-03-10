@@ -47,6 +47,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 
     /**
      * Nodes
      */
+    Route::get('nodes/generate-slug', 'NodeController@generateSlug');
     Route::resource('nodes', 'NodeController');
 
     /**

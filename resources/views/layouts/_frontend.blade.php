@@ -44,36 +44,16 @@
                         </a>
                     @endif
                 </div>
-{{--                <div class="mobile-menu">--}}
-{{--                    <!-- your list menu in mobile here -->--}}
-{{--                    <ul>--}}
-{{--                        <li><a class="fade-page" href="Home_1.html">Home 1</a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_2.html">Home 2</a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_3.html">Home 3</a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_4.html">Home 4</a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_5.html">Home 5</a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_1_grad.html">Home 1 <span--}}
-{{--                                    class="text-grad">Gradient</span></a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_2_grad.html">Home 2 <span--}}
-{{--                                    class="text-grad">Gradient</span></a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_3_grad.html">Home 3 <span--}}
-{{--                                    class="text-grad">Gradient</span></a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_4_grad.html">Home 4 <span--}}
-{{--                                    class="text-grad">Gradient</span></a>--}}
-{{--                        </li>--}}
-{{--                        <li><a class="fade-page" href="Home_5_grad.html">Home 5 <span--}}
-{{--                                    class="text-grad">Gradient</span></a>--}}
-{{--                        </li>--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
+                <div class="mobile-menu">
+                    <!-- your list menu in mobile here -->
+                    <ul>
+                        @foreach($menus as $menu)
+                            <li>
+                                <a class="fade-page" href="{{ $menu->slug == "home" ? '/' : $menu->slug }}">{{ $menu->menu_name }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
                 <div class="flex">
                     <div class="menu-toggle-icon">
                         <div class="menu-toggle">

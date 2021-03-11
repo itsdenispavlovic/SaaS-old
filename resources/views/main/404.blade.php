@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- =========================== section contact -->
-    <section class="section is-lg page-404">
+    <section class="section is-lg page-404 vh-100">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5">

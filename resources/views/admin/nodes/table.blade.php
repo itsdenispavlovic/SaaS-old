@@ -13,7 +13,7 @@
         </thead>
         <tbody>
         @foreach($nodes as $node)
-            <tr>
+            <tr id='row{{ $node->id }}'>
                 <td>
                     {{ $node->name }} <br/>
                     <a href="{{ asset($node->slug) }}"><i class="fa fa-copy"></i> {{ $node->slug }}</a>

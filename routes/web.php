@@ -50,6 +50,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 
     /**
      * Nodes
      */
+    Route::post('nodes/reorder', 'NodeController@reorderRows');
     Route::get('nodes/generate-slug', 'NodeController@generateSlug');
     Route::resource('nodes', 'NodeController');
 

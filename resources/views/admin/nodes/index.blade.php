@@ -28,3 +28,27 @@
     </div>
 @endsection
 
+@push('scripts')
+    <script>
+        $(document).ready(() => {
+            $("#nodes-table").tableDnD({
+                onDrop: function(table, row)
+                {
+                    var pos = 1;
+                    var rows = table.tBodies[0].rows;
+                    /*
+                    for (var i = 0; i < rows.length; i++)
+                        if (rows[i].id != '')
+                            $('#' + rows[i].id.replace('row', 'position')).val(pos++);
+                    */
+                    $.ajax({
+                        url: "/admin/nodes/reorder",
+                        data: $.tableDnD.serialize() + '&class=nodes&dataset=nodes-table&_token=' + $('meta[name=_token]').attr('content'),
+                        type: 'POST',
+                        success: function() {}
+                    });
+                }
+            });
+        })
+    </script>
+@endpush

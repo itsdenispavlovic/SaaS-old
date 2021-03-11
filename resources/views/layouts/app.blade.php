@@ -109,6 +109,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@coreui/coreui@2.1.16/dist/js/coreui.min.js"></script>
+
+<!-- Table DND -->
+<script type="text/javascript" src="{{ asset("assets/js/jquery.tablednd_0_5.js") }}"></script>
+
 @stack('scripts')
 
 </html>

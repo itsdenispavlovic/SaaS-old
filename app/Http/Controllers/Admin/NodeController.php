@@ -11,6 +11,7 @@ use App\Traits\ImageUpload;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Response;
 
@@ -236,5 +237,77 @@ class NodeController extends AppBaseController
         }
 
         return response()->json($response);
+    }
+
+    /**
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function reorderRows(Request $request)
+    {
+        if (Session::token() !== $request->get('_token') || !$request->ajax())
+        {
+            return response()->json( array(
+                'status' => 'error',
+                'msg' => 'Unauthorized access'
+            ));
+        }
+
+
+        if (empty($request->get("class")))
+        {
+            return response()->json( array(
+                'status' => 'error',
+                'msg' => 'Invalid params'
+            ));
+        }
+
+        if (empty($request->get("dataset")))
+        {
+            return response()->json( array(
+                'status' => 'error',
+                'msg' => 'Invalid params'
+            ));
+        }
+
+        $pos = 1;
+
+        foreach ($request->get($request->get("dataset")) as $field)
+        {
+            if ($field != "")
+            {
+                $id = (int) str_replace("row", "", $field);
+
+                if (empty($id))
+                {
+                    return response()->json( array(
+                        'status' => 'error',
+                        'msg' => 'Invalid params'
+                    ));
+                }
+
+                /*DB::table($request->get("class"))->where("id", $id)->update(array("position" => $pos));
+                DB::table("product_categories")->where("node_id", $id)->update(array("position" => $pos));
+                DB::table("products")->where("node_id", $id)->update(array("position" => $pos));*/
+
+                $node = Node::withoutGlobalScopes(["Interval"])->findOrFail($id);
+                $node->position = $pos;
+                $node->save();
+
+                if ($node->node_type == "product")
+                {
+                    DB::table("products")->where("node_id", $id)->update(array("position" => $pos));
+                }
+
+                if ($node->node_type == "product_category")
+                {
+                    DB::table("product_categories")->where("node_id", $id)->update(array("position" => $pos));
+                }
+
+                $pos++;
+            }
+        }
+
+        return response()->json(array('status' => 'ok'));
     }
 }

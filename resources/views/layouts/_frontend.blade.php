@@ -82,35 +82,45 @@
                 <div class="col-lg-6">
                     <div class="footer-desc">
                         <div class="logo">
-                            <img src="../assets/images/icons/logo-icon.svg" alt="">
+{{--                            <img src="../assets/images/icons/logo-icon.svg" alt="">--}}
+                            <h3 class="text-white">
+                                {!! config('app.name') !!}
+                            </h3>
                         </div>
-                        <p>Qonto is a Payment Institution (registration number 16958), supervised by the.</p>
+                        <p>{!! $footer->short_description !!}</p>
                     </div>
                 </div>
-                <div class="col-lg-2 col-6">
-                    <h6 class="list-title">Company</h6>
-                    <ul class="list-items">
-                        <li> <a href="#">About</a> </li>
-                        <li> <a href="#">Our customers</a> </li>
-                        <li> <a href="#">Contact us</a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2 col-6">
-                    <h6 class="list-title">Useful links</h6>
-                    <ul class="list-items">
-                        <li> <a href="#">Media kit</a> </li>
-                        <li> <a href="#">Affiliate program</a> </li>
-                        <li> <a href="#">Contact us</a> </li>
-                    </ul>
-                </div>
-                <div class="col-lg-2">
-                    <h6 class="list-title">Legal</h6>
-                    <ul class="list-items">
-                        <li> <a href="#">Terms</a> </li>
-                        <li> <a href="#">Privacy </a> </li>
-                        <li> <a href="#">Cookies</a> </li>
-                    </ul>
-                </div>
+                @if(!empty($footer['company_links']) && count($footer['company_links']) > 0)
+                    <div class="col-lg-2 col-6">
+                        <h6 class="list-title">Company</h6>
+                            <ul class="list-items">
+                                @foreach($footer['company_links'] as $companyLink)
+                                    <li> <a href="{{ asset($companyLink->short_description) }}">{{ $companyLink->menu_name }}</a> </li>
+                                @endforeach
+                            </ul>
+                    </div>
+                @endif
+
+                @if(!empty($footer['useful_links']) && count($footer['useful_links']) > 0)
+                    <div class="col-lg-2 col-6">
+                        <h6 class="list-title">Useful links</h6>
+                        <ul class="list-items">
+                            @foreach($footer['useful_links'] as $companyLink)
+                                <li> <a href="{{ asset($companyLink->short_description) }}">{{ $companyLink->menu_name }}</a> </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if(!empty($footer['legal_links']) && count($footer['legal_links']) > 0)
+                    <div class="col-lg-2">
+                        <h6 class="list-title">Legal</h6>
+                        <ul class="list-items">
+                            @foreach($footer['legal_links'] as $companyLink)
+                                <li> <a href="{{ asset($companyLink->short_description) }}">{{ $companyLink->menu_name }}</a> </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
             <p class="copyright text-center text-copyright"> All rights reserved {{ date('Y') }}</p>
         </div>

@@ -142,7 +142,7 @@ class NodeController extends AppBaseController
 
         Flash::success('Node updated successfully.');
 
-        return redirect(route('admin.nodes.index'));
+        return redirect(route('admin.nodes.index', ['parent' => $node->parent_id]));
     }
 
     /**

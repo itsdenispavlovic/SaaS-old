@@ -15,7 +15,7 @@
     <nav class="navbar is-dark">
         <div class="container">
             <div class="flex">
-                <a href="/" class="navbar-brand flex vcenter" href="#">
+                <a href="/" class="navbar-brand flex vcenter">
 {{--                    <img data-aos="fade-right" class="logo" src="../assets/images/logos/logo-dark.svg" alt="">--}}
                     <h3>{!! config('app.name') !!}</h3>
                 </a>

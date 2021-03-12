@@ -26,6 +26,10 @@
                         @endforeach
                         </tbody>
                     </table>
+
+                    <div class="mt-4">
+                        {{ $payments->links() }}
+                    </div>
                 @else
                     <div class="alert alert-info">
                         There are no payments made.

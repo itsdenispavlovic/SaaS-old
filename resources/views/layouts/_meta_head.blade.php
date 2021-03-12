@@ -15,3 +15,5 @@
 <title>{!! config('app.name') !!}</title>
 
 @yield('styles')
+
+@livewireStyles

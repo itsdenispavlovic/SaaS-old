@@ -214,6 +214,11 @@
 <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
+<!-- Sweet Aler 2.10 -->
+<script src="https//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+@livewireScripts
+
 @stack('scripts')
 </body>
 </html>

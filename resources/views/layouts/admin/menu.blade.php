@@ -22,3 +22,18 @@
         <span>Newsletters</span>
     </a>
 </li>
+
+<h6>Contact settings</h6>
+
+<li class="nav-item {{ Request::is('admin/contacts*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.contacts.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Contacts</span>
+    </a>
+</li>
+<li class="nav-item {{ Request::is('admin/contactTypes*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{ route('admin.contactTypes.index') }}">
+        <i class="nav-icon icon-cursor"></i>
+        <span>Contact Types</span>
+    </a>
+</li>

@@ -206,7 +206,8 @@
 <script src="{{ asset('assets/js/plugins/feather-icons.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/slick.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('assets/js/plugins/aos.js') }}"></script>
+<script src="{{ asset(
+    'assets/js/plugins/aos.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/typed.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/all.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins/jquery.waypoints.min.js') }}"></script>
@@ -215,7 +216,17 @@
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
 <!-- Sweet Aler 2.10 -->
-<script src="https//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    window.addEventListener('swal:modal-listener', event => {
+        Swal.fire({
+            icon: event.detail.type,
+            title: event.detail.title,
+            text: event.detail.text
+        });
+    })
+</script>
 
 @livewireScripts
 

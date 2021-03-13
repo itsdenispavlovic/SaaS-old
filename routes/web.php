@@ -63,6 +63,13 @@ Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 
      * Newsletter
      */
     Route::resource('newsletters', 'NewsletterController');
+
+    /**
+     * Contacts & Contact Types
+     */
+    Route::get('contacts/toggle', 'ContactController@toggleField');
+    Route::resource('contacts', 'ContactController');
+    Route::resource('contactTypes', 'ContactTypeController');
 });
 
 Route::stripeWebhooks('stripe-webhook');
@@ -70,3 +77,7 @@ Route::stripeWebhooks('stripe-webhook');
 
 Route::get('{nodePath}', [MainController::class, 'showNode'])->where('nodePath', '([A-z0-9\d\-\/_. ]+)?')->name("websitePage");
 
+
+
+Route::group(['prefix' => 'admin'], function () {
+});

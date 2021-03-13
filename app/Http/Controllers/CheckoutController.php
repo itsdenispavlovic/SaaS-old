@@ -12,6 +12,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
 
 class CheckoutController extends Controller
@@ -58,6 +59,8 @@ class CheckoutController extends Controller
                 'city' => $request->get('city'),
                 'postcode' => $request->get('postcode')
             ]);
+
+            Log::info('New subscriber, with "' . $plan->name . '"');
 
             return redirect()->route('billing')->with('message', 'Subscribed successfully!');
 

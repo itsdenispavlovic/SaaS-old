@@ -16,9 +16,9 @@
                              <a class="pull-right" href="{{ route('admin.users.create') }}"><i class="fa fa-plus-square fa-lg"></i></a>
                          </div>
                          <div class="card-body">
-                             @include('admin.users.table')
+                             @livewire('users-table')
                               <div class="pull-right mr-3">
-                                     
+
                               </div>
                          </div>
                      </div>

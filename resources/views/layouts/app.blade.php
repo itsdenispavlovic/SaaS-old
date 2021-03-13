@@ -26,6 +26,8 @@
 
     <!-- Token -->
     <meta name="_token" content="{!! csrf_token() !!}"/>
+
+    @livewireStyles
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
 <header class="app-header navbar">
@@ -113,6 +115,7 @@
 <!-- Table DND -->
 <script type="text/javascript" src="{{ asset("assets/js/jquery.tablednd_0_5.js") }}"></script>
 
+@livewireScripts
 @stack('scripts')
 
 </html>

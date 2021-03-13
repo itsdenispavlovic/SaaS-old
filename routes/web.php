@@ -28,8 +28,6 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('coupon', [CheckoutController::class, 'checkCoupon'])->name('coupon');
     Route::get('checkout/{plan_id}', [CheckoutController::class, 'checkout'])->name('checkout');
     Route::post('checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
-    Route::get('cancel', [BillingController::class, 'cancelPlan'])->name('cancel.plan');
-    Route::get('resume', [BillingController::class, 'resumePlan'])->name('resume.plan');
 
     Route::get('payment-methods/default/{paymentMethod}', [PaymentMethodController::class, 'markDefault'])->name('payment-methods.markDefault');
     Route::resource('payment-methods', PaymentMethodController::class);
@@ -76,8 +74,3 @@ Route::stripeWebhooks('stripe-webhook');
 
 
 Route::get('{nodePath}', [MainController::class, 'showNode'])->where('nodePath', '([A-z0-9\d\-\/_. ]+)?')->name("websitePage");
-
-
-
-Route::group(['prefix' => 'admin'], function () {
-});

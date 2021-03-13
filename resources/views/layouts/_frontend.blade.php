@@ -22,7 +22,7 @@
                 <ul class="navbar-menu">
                     @foreach($menus as $menu)
                         <li data-aos="fade-left" data-aos-delay="100">
-                            <a class="fade-page" href="{{ $menu->slug == "home" ? '/' : $menu->slug }}">{{ $menu->menu_name }}</a>
+                            <a class="fade-page" href="{{ $menu->slug == "home" ? asset('/') : asset($menu->slug) }}">{{ $menu->menu_name }}</a>
                         </li>
                     @endforeach
                 </ul>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\NodeHelper;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -20,8 +21,9 @@ class PaymentMethodController extends Controller
      */
     public function create()
     {
-        $intent = auth()->user()->createSetupIntent();
-        return view('payment-methods.create', compact('intent'));
+        $data = NodeHelper::getData();
+        $data['intent'] = auth()->user()->createSetupIntent();
+        return view('payment-methods.create', $data);
     }
 
     /**

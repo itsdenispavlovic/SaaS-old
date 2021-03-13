@@ -4,24 +4,23 @@
             <h4 class="plan-title"> {{ $plan->name }} </h4>
             <div class="flex center">
                 <div class="plan-price">{{ $plan->price }} </div> <span class="price-var ">$</span>
-{{--                <small class="mt-auto">{{ chop($billingPeriod, "ly") }}</small>--}}
+                {{--                <small class="mt-auto">{{ chop($billingPeriod, "ly") }}</small>--}}
             </div>
             <div class="flex center mt-4">
                 @if(!is_null($currentPlan) && $plan->stripe_plan_id == $currentPlan->stripe_plan)
                     Your current plan.
                     <br />
                     @if(!$currentPlan->onGracePeriod())
-                        <a href="{{ route('cancel.plan') }}" class="btn btn-primary btn-round" onclick="return confirm('Are you sure?');">Cancel plan</a>
+                        <button type="button" wire:click="cancelPlan({{ $plan->id }})" class="btn btn-primary btn-round">Cancel plan</button>
                     @else
                         Your subscription will end on {{ $currentPlan->ends_at->toDateString() }}
                         <br>
-                        <a href="{{ route('resume.plan') }}" class="btn btn-warning btn-round">Resume subscription</a>
+                        <button type="button" wire:click="resumePlan" class="btn btn-warning btn-round">Resume subscription</button>
                     @endif
                 @else
-                    <a href="{{ route('checkout', $plan->id) }}" class="btn btn-dark btn-round"> Get it For free </a>
+                    <button type="button" wire:click="selectPlan({{ $plan->id }})" class="btn btn-dark btn-round"> Get it For free </button>
                 @endif
             </div>
-{{--            <b>${{ $plan->price }} / {{ chop($billingPeriod, "ly") }}</b>--}}
         </div>
     </div>
 </div>

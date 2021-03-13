@@ -13,6 +13,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
 use Stripe\Coupon;
 use Stripe\Stripe;
@@ -34,12 +35,19 @@ class CheckoutController extends Controller
 
         $data['currentPlan'] = Auth::user()->subscription('default')->stripe_plan ?? NULL;
 
-        if (!is_null($data['currentPlan']) && $data['currentPlan'] != $data['plan']->stripe_plan_id) {
-            // Change the subscription
-            Auth::user()->subscription('default')->swap($data['plan']->stripe_plan_id);
-
-            return redirect()->route('billing');
-        }
+        // In PlanSwitcher livewire
+//        if (!is_null($data['currentPlan']) && $data['currentPlan'] != $data['plan']->stripe_plan_id) {
+//            // Change the subscription
+//            try {
+//                Auth::user()->subscription('default')->swap($data['plan']->stripe_plan_id);
+//                Log::info('Switched to: ' . $data['plan']->name);
+//            } catch (Exception $e)
+//            {
+//                Log::critical($e->getMessage());
+//            }
+//
+//            return redirect()->route('billing');
+//        }
 
         $data['subtotal'] = $data['plan']->price;
         $data['taxPercent'] = Auth::user()->taxPercentage();

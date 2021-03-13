@@ -21,40 +21,10 @@ class BillingController extends Controller
     public function index()
     {
         $data = NodeHelper::getData();
-        $data['monthlyPlan'] = Plan::where('billing_period', Plan::MONTHLY_PERIOD)->get();
-        $data['yearlyPlan'] = Plan::where('billing_period', Plan::YEARLY_PERIOD)->get();
 
-        $currentPlan = null;
-
-        if(Auth::check())
-        {
-            $currentPlan = Auth::user()->subscription('default') ?? NULL;
-        }
-
-        $data['currentPlan'] = $currentPlan;
         $data['payments'] = Payment::where('user_id', Auth::id())->latest()->get();
 
         return view('billing.index', $data);
-    }
-
-    /**
-     * @return RedirectResponse
-     */
-    public function cancelPlan(): RedirectResponse
-    {
-        Auth::user()->subscription('default')->cancel();
-
-        return redirect()->route('billing');
-    }
-
-    /**
-     * @return RedirectResponse
-     */
-    public function resumePlan(): RedirectResponse
-    {
-        Auth::user()->subscription('default')->resume();
-
-        return redirect()->route('billing');
     }
 
     /**

@@ -112,24 +112,30 @@ class PlanSwitcher extends Component
 
     public function select($id)
     {
-        $plan = Plan::find($id);
-        $currentPlan = Auth::user()->subscription('default')->stripe_plan ?? NULL;
+        if(Auth::check())
+        {
+            $plan = Plan::find($id);
+            $currentPlan = Auth::user()->subscription('default')->stripe_plan ?? NULL;
 
-        if (!is_null($currentPlan) && $currentPlan != $plan->stripe_plan_id) {
-            // Change the subscription
-            try {
-                Auth::user()->subscription('default')->swap($plan->stripe_plan_id);
-                Log::info('Subscription changed to: ' . $plan->name);
-            } catch (Exception $e) {
-                Log::critical($e->getMessage());
+            if (!is_null($currentPlan) && $currentPlan != $plan->stripe_plan_id) {
+                // Change the subscription
+                try {
+                    Auth::user()->subscription('default')->swap($plan->stripe_plan_id);
+                    Log::info('Subscription changed to: ' . $plan->name);
+                } catch (Exception $e) {
+                    Log::critical($e->getMessage());
+                }
+                $this->refreshChecked();
             }
-            $this->refreshChecked();
+            else
+            {
+                return redirect()->route('checkout', $plan->id);
+            }
         }
         else
         {
-            return redirect()->route('checkout', $plan->id);
+            return redirect()->route('login');
         }
-
     }
 
     public function render()

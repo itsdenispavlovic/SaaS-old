@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\NodeHelper;
 use App\Models\Country;
 use App\Models\Plan;
 use Exception;
@@ -27,26 +28,27 @@ class CheckoutController extends Controller
      */
     public function checkout($plan_id)
     {
-        $plan = Plan::findOrFail($plan_id);
-        $countries = Country::all();
+        $data = NodeHelper::getData();
+        $data['plan'] = Plan::findOrFail($plan_id);
+        $data['countries'] = Country::all();
 
-        $currentPlan = Auth::user()->subscription('default')->stripe_plan ?? NULL;
+        $data['currentPlan'] = Auth::user()->subscription('default')->stripe_plan ?? NULL;
 
-        if (!is_null($currentPlan) && $currentPlan != $plan->stripe_plan_id) {
+        if (!is_null($data['currentPlan']) && $data['currentPlan'] != $data['plan']->stripe_plan_id) {
             // Change the subscription
-            Auth::user()->subscription('default')->swap($plan->stripe_plan_id);
+            Auth::user()->subscription('default')->swap($data['plan']->stripe_plan_id);
 
             return redirect()->route('billing');
         }
 
-        $subtotal = $plan->price;
-        $taxPercent = Auth::user()->taxPercentage();
-        $taxAmount = round($subtotal * $taxPercent / 100);
-        $total = $subtotal + $taxAmount;
+        $data['subtotal'] = $data['plan']->price;
+        $data['taxPercent'] = Auth::user()->taxPercentage();
+        $data['taxAmount'] = round($data['subtotal'] * $data['taxPercent'] / 100);
+        $data['total'] = $data['subtotal'] + $data['taxAmount'];
 
-        $intent = Auth::user()->createSetupIntent();
+        $data['intent'] = Auth::user()->createSetupIntent();
 
-        return view('billing.checkout', compact('plan', 'intent', 'countries', 'subtotal', 'taxPercent', 'taxAmount', 'total'));
+        return view('billing.checkout', $data);
     }
 
     /**

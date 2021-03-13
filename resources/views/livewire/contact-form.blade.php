@@ -1,6 +1,6 @@
 <form class="contact-form">
     <div class="form-group">
-        <label>How can I help you?</label>
+        <label>Contact type:</label>
         <select wire:model.lazy="contact_type_id" class="form-control has-style1 mb-0 " id="service">
             <option value="">Select</option>
             @foreach($contactTypes as $contactType)
@@ -11,7 +11,7 @@
     </div>
 
     <div class="form-group">
-        <label>Your Name</label>
+        <label>Your Name:</label>
         <input wire:model.lazy="name" placeholder="Your Name" class="form-control has-style1 mb-0" id="how"
                type="text">
         @error('name') <span class="error text-danger">{{ $message }}</span> @enderror
@@ -22,7 +22,7 @@
                type="text">
         @error('email') <span class="error text-danger">{{ $message }}</span> @enderror
     </div>
-    <label>Tell me more about your project</label>
+    <label>Content: </label>
     <textarea wire:model.lazy="content" class="textarea has-style1 mb-0" placeholder="How can we help?"></textarea>
     @error('content') <span class="error text-danger">{{ $message }}</span> @enderror
     <div class="form-group mt-2">

@@ -147,7 +147,7 @@ class Node extends Model
     public function subnodes($isMenu = false)
     {
         $subnodes = $this->hasMany('App\Models\Node', "parent_id");
-        $subnodes = Node::pageFilter($subnodes);
+        $subnodes = Node::pageFilter($subnodes, $checkAdmin = false);
 
         if ($isMenu)
         {

@@ -23,7 +23,9 @@
         "laravel/ui": "^3.2",
         "laravelcollective/html": "^6.2",
         "laraveldaily/laravel-invoices": "^2.0",
+        "league/flysystem-aws-s3-v3": "~1.0",
         "livewire/livewire": "^2.4",
+        "spatie/laravel-backup": "^6.15",
         "spatie/laravel-sitemap": "^5.9",
         "spatie/laravel-stripe-webhooks": "^2.5"
     },

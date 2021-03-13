@@ -9,14 +9,10 @@ use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Laravel\Cashier\Exceptions\SubscriptionUpdateFailure;
-use Stripe\Coupon;
-use Stripe\Stripe;
 
 class CheckoutController extends Controller
 {
@@ -25,7 +21,6 @@ class CheckoutController extends Controller
      *
      * @return Application|Factory|View|RedirectResponse
      *
-     * @throws SubscriptionUpdateFailure
      */
     public function checkout($plan_id)
     {
@@ -34,27 +29,6 @@ class CheckoutController extends Controller
         $data['countries'] = Country::all();
 
         $data['currentPlan'] = Auth::user()->subscription('default')->stripe_plan ?? NULL;
-
-        // In PlanSwitcher livewire
-//        if (!is_null($data['currentPlan']) && $data['currentPlan'] != $data['plan']->stripe_plan_id) {
-//            // Change the subscription
-//            try {
-//                Auth::user()->subscription('default')->swap($data['plan']->stripe_plan_id);
-//                Log::info('Switched to: ' . $data['plan']->name);
-//            } catch (Exception $e)
-//            {
-//                Log::critical($e->getMessage());
-//            }
-//
-//            return redirect()->route('billing');
-//        }
-
-        $data['subtotal'] = $data['plan']->price;
-        $data['taxPercent'] = Auth::user()->taxPercentage();
-        $data['taxAmount'] = round($data['subtotal'] * $data['taxPercent'] / 100);
-        $data['total'] = $data['subtotal'] + $data['taxAmount'];
-
-        $data['intent'] = Auth::user()->createSetupIntent();
 
         return view('billing.checkout', $data);
     }
@@ -90,24 +64,5 @@ class CheckoutController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->with('error', $e->getMessage());
         }
-
-    }
-
-    /**
-     * @param Request $request
-     *
-     * @return JsonResponse|Coupon
-     */
-    public function checkCoupon(Request $request)
-    {
-        try {
-            Stripe::setApiKey(config('stripe.secret'));
-            $coupon = Coupon::retrieve($request->get('coupon_code'));
-        } catch (Exception $e)
-        {
-            return response()->json(['error_text' => 'Coupon not found']);
-        }
-
-        return $coupon;
     }
 }

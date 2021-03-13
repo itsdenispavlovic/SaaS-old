@@ -25,7 +25,6 @@ Route::get('sitemap-google.xml', [SitemapController::class, 'googleSitemap']);
 Route::get('plans', [BillingController::class, 'index'])->name('billing');
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('coupon', [CheckoutController::class, 'checkCoupon'])->name('coupon');
     Route::get('checkout/{plan_id}', [CheckoutController::class, 'checkout'])->name('checkout');
     Route::post('checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
 

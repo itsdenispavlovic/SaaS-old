@@ -34,13 +34,13 @@ class ChargeSucceededJob implements ShouldQueue
 
         $user = User::where('stripe_id', $charge['customer'])->first();
 
-        // @Todo: need to be fixed and integrate VAT Calculator
-        $subtotal = $charge['amount'];
-        $taxPercent = $user->taxPercentage();
-        $taxAmount = round($subtotal * $taxPercent / 100);
-
         if($user)
         {
+            // @Todo: need to be fixed and integrate VAT Calculator
+            $subtotal = $charge['amount'];
+            $taxPercent = $user->taxPercentage();
+            $taxAmount = round($subtotal * $taxPercent / 100);
+
             $payment = Payment::create([
                 'user_id' => $user->id,
                 'stripe_id' => $charge['id'],

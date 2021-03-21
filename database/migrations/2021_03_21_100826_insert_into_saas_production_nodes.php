@@ -39,8 +39,8 @@ class InsertIntoSaasProductionNodes extends Migration
             'deleted_at' => NULL
         ]);
 
-        $privacyPolicyUpdateSlug = \App\Models\Node::where('menu_name', 'Privacy')->first()->short_description = "privacy-policy";
-        $privacyPolicyUpdateSlug->save();
+//        $privacyPolicyUpdateSlug = \App\Models\Node::where('menu_name', 'Privacy')->first()->short_description = "privacy-policy";
+//        $privacyPolicyUpdateSlug->save();
     }
 
     /**
